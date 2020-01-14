@@ -1,0 +1,6 @@
+#ifndef INCLUEDED_COO_PRECOMPILED_H
+#define INCLUEDED_COO_PRECOMPILED_H
+
+#include "Common.h"
+
+#endif // !INCLUEDED_COO_PRECOMPILED_H

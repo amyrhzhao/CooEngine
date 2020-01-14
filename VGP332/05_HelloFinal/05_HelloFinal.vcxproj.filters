@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="Sheep.h">
+      <Filter>Agent</Filter>
+    </ClInclude>
+    <ClInclude Include="SheepManager.h">
+      <Filter>Agent</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassManager.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Wolf.h">
+      <Filter>Agent</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Sheep.cpp">
+      <Filter>Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="SheepManager.cpp">
+      <Filter>Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassManager.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Wolf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{96700164-226a-4348-9871-99b524f21124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Agent">
+      <UniqueIdentifier>{0fe978f9-bf1c-4c09-a939-0367cce0c2b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

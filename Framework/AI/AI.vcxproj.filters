@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Inc\AI.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Common.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Precompiled.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\State.h">
+      <Filter>Inc\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\StateMachine.h">
+      <Filter>Inc\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Graph.h">
+      <Filter>Inc\Pathing</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GraphSearch.h">
+      <Filter>Inc\Pathing</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SteeringBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SteeringModule.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Agent.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SteeringBehaviorType.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AIWorld.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PerceptionModule.h">
+      <Filter>Inc\Perception</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Sensor.h">
+      <Filter>Inc\Perception</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MemoryRecord.h">
+      <Filter>Inc\Perception</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Entity.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\DecisionModule.h">
+      <Filter>Inc\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Goal.h">
+      <Filter>Inc\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GoalComposite.h">
+      <Filter>Inc\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Strategy.h">
+      <Filter>Inc\Goal</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{31022952-912a-4821-b374-7a6495f7cbc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc">
+      <UniqueIdentifier>{6e611015-4241-4e3a-8813-e09671ac3be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\FSM">
+      <UniqueIdentifier>{dd10ccbe-a795-463a-bddd-e163ed519408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Pathing">
+      <UniqueIdentifier>{afb9e075-7b69-44cd-9f79-8c6a5b7995ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Steering">
+      <UniqueIdentifier>{bb48ec47-d54c-416c-88bf-024f12488337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Steering">
+      <UniqueIdentifier>{59d11ccf-4d77-44b7-8fa6-a3325f09b39e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Perception">
+      <UniqueIdentifier>{a92bf6aa-8162-4d5c-a3f2-842b61ccebdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Perception">
+      <UniqueIdentifier>{90536d01-8b4e-4413-b23e-e9b90845f8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Goal">
+      <UniqueIdentifier>{8376ea49-6c1a-4528-aa55-bbef4bfdee0d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Precompiled.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SteeringBehaviorType.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SteeringModule.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Agent.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\AIWorld.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\PerceptionModule.cpp">
+      <Filter>Src\Perception</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Entity.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
