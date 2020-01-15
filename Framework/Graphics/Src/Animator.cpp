@@ -85,7 +85,7 @@ void Animator::UpdateAnimation(float deltaTime)
 		}
 		if (mInTransition)
 		{
-			mTransitionDurationPassed += deltaTime / animClip->duration;
+			mTransitionDurationPassed += deltaTime / animClip->duration * animClip->ticksPersecond;
 			mTimers[mNextAnimationClip] += deltaTime * mAnimationBank->animationClips[mNextAnimationClip]->ticksPersecond;
 			if (mTimers[mNextAnimationClip] > mAnimationBank->animationClips[mNextAnimationClip]->duration)
 			{
