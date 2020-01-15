@@ -9,20 +9,32 @@ namespace Coo::Graphics
 	class Animator
 	{
 	public:
-		void PlayAnimationClip(int clip);
+		void PlayAnimationClip(int clip, bool playFromBegining = true);
+		void AddTransition(int clip, float exitTime, float transitionDuration);
 		void UpdateAnimation(float deltaTime);
 		bool GetBoneTransform(size_t index, Coo::Math::Matrix4& transform) const;
 		void Bind(AnimationBank* animationBank);
 		void DebugUI();
 
 	private:
-		int animationClip = -1;
+		int mCurrAnimationClip = -1;
 		AnimationBank* mAnimationBank = nullptr;
-		bool loop = true;
-		float timer = 0.0f;
-		float paused = false;
-		float playSpeed = 1.0f;
+		float mPaused = false;
+		
+		std::vector<bool> mIsLoop;
+		std::vector<float> mTimers;
+		std::vector<float> mPlaySpeed;
+		
 		const AnimationClip* GetCurrAnimationClip(bool playing = true) const;
+	
+		// Transition
+		bool mTransiting = false;
+		bool mInTransition = false;
+		int mNextAnimationClip = 0;
+		float mExitTime = 0.9f;
+		float mTransitionDuration = 0.1f;
+		float mTransitionDurationPassed = 0.0f;
+		float mCurrTransitionDuration;
 	};
 
 } // namespace Coo::Graphics

@@ -13,6 +13,9 @@ namespace Coo::Graphics
 		Math::Matrix4 GetPositionTransform(float time) const;
 		Math::Matrix4 GetRotationTransform(float time) const;
 		Math::Matrix4 GetScaleTransform(float time) const;
+		Math::Vector3 GetPosition(float time) const;
+		Math::Quaternion GetRotation(float time) const;
+		Math::Vector3 GetScale(float time) const;
 
 	private:
 		friend class AnimationBuilder;

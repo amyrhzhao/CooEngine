@@ -15,7 +15,7 @@ namespace
 const AnimationClip* Animator::GetCurrAnimationClip(bool playing) const
 {
 	int index;
-	if (playing) { index = animationClip; }
+	if (playing) { index = mCurrAnimationClip; }
 	else { index = currAnim; }
 	const AnimationClip* animClip = nullptr;
 	if (index >= 0 && index < static_cast<int>(mAnimationBank->animationClips.size()))
@@ -25,40 +25,84 @@ const AnimationClip* Animator::GetCurrAnimationClip(bool playing) const
 	return animClip;
 }
 
-void Animator::PlayAnimationClip(int clip)
+void Animator::PlayAnimationClip(int clip, bool playFromBegining)
 {
 	if (mAnimationBank && clip >= static_cast<int>(mAnimationBank->animationClips.size()))
 	{
-		animationClip = static_cast<int>(mAnimationBank->animationClips.size()) - 1;
+		mCurrAnimationClip = static_cast<int>(mAnimationBank->animationClips.size()) - 1;
 	}
 	else if (clip < 0)
 	{
-		animationClip = -1;
+		mCurrAnimationClip = -1;
 	}
 	else
 	{
-		animationClip = clip;
+		mCurrAnimationClip = clip;
+		if (playFromBegining)
+		{
+			mTimers[mCurrAnimationClip] = 0.0f;
+		}
+		//playSpeed[animationClip] = 1.0f;
 	}
-	timer = 0.0f;
-	playSpeed = 1.0f;
+}
+
+void Coo::Graphics::Animator::AddTransition(int clip, float exitTime, float transitionDuration)
+{
+	mTransiting = true;
+	mInTransition = false;
+	mNextAnimationClip = clip;
+	mExitTime = exitTime;
+	mTransitionDuration = transitionDuration;
+	mTransitionDurationPassed = 0.0f;
 }
 
 void Animator::UpdateAnimation(float deltaTime)
 {
 	const AnimationClip* animClip = GetCurrAnimationClip();
-	if (!paused)
+	if (animClip)
 	{
-		timer += deltaTime * (animClip ? animClip->ticksPersecond : 1.0f) * playSpeed;
-	}
-	if (animClip && timer > animClip->duration)
-	{
-		if(loop)
+		float lastTimer = mTimers[mCurrAnimationClip];
+		if (!mPaused)
 		{
-			timer = 0.0f;
+			mTimers[mCurrAnimationClip] += deltaTime * (animClip ? animClip->ticksPersecond : 1.0f) * mPlaySpeed[mCurrAnimationClip];
 		}
-		else
+		if (animClip && mTimers[mCurrAnimationClip] > animClip->duration)
 		{
-			timer = animClip->duration;
+			if (mIsLoop[mCurrAnimationClip])
+			{
+				mTimers[mCurrAnimationClip] = 0.0f;
+			}
+			else
+			{
+				mTimers[mCurrAnimationClip] = animClip->duration;
+			}
+		}
+		if (mTransiting && lastTimer / animClip->duration < mExitTime && mTimers[mCurrAnimationClip] / animClip->duration > mExitTime)
+		{
+			mInTransition = true;
+			mTransiting = false;
+			mTimers[mNextAnimationClip] = 0.0f;
+		}
+		if (mInTransition)
+		{
+			mTransitionDurationPassed += deltaTime / animClip->duration;
+			mTimers[mNextAnimationClip] += deltaTime * mAnimationBank->animationClips[mNextAnimationClip]->ticksPersecond;
+			if (mTimers[mNextAnimationClip] > mAnimationBank->animationClips[mNextAnimationClip]->duration)
+			{
+				if (mIsLoop[mCurrAnimationClip])
+				{
+					mTimers[mNextAnimationClip] = 0.0f; 
+				}
+				else
+				{
+					mTimers[mNextAnimationClip] = mAnimationBank->animationClips[mNextAnimationClip]->duration;
+				}
+			}
+			if (mTransitionDurationPassed > mTransitionDuration)
+			{
+				mInTransition = false;
+				mCurrAnimationClip = mNextAnimationClip;
+			}
 		}
 	}
 
@@ -67,12 +111,48 @@ void Animator::UpdateAnimation(float deltaTime)
 bool Coo::Graphics::Animator::GetBoneTransform(size_t index, Matrix4& transform) const
 {
 	const AnimationClip* animClip = GetCurrAnimationClip();
-	return animClip && animClip->GetTransform(timer, static_cast<uint32_t>(index), transform);
+	if (!mInTransition)
+	{
+		return animClip && animClip->GetTransform(mTimers[mCurrAnimationClip], static_cast<uint32_t>(index), transform);
+	}
+	else
+	{
+		Vector3 currPos;
+		Quaternion currRot;
+		Vector3 currScale;
+		if (animClip && animClip->boneAnimations[index])
+		{
+			const Animation& anim = animClip->boneAnimations[index]->animation;
+			currPos = anim.GetPosition(mTimers[mCurrAnimationClip]);
+			currRot = anim.GetRotation(mTimers[mCurrAnimationClip]);
+			currScale = anim.GetScale(mTimers[mCurrAnimationClip]);
+		}
+		const AnimationClip* nextAnimClip = mAnimationBank->animationClips[mNextAnimationClip].get();
+		Vector3 nextPos;
+		Quaternion nextRot;
+		Vector3 nextScale;
+		if (nextAnimClip && nextAnimClip->boneAnimations[index])
+		{
+			const Animation& nextAnim = nextAnimClip->boneAnimations[index]->animation;
+			nextPos = nextAnim.GetPosition(mTimers[mNextAnimationClip]);
+			nextRot = nextAnim.GetRotation(mTimers[mNextAnimationClip]);
+			nextScale = nextAnim.GetScale(mTimers[mNextAnimationClip]);
+		}
+		float t = mTransitionDurationPassed / mTransitionDuration;
+		Vector3 pos = Lerp(currPos, nextPos, t);
+		Quaternion rot = Slerp(currRot, nextRot, t);
+		Vector3 scaling = Lerp(currScale, nextScale, t);
+		transform = Scale(scaling) * MatrixRotationQuaternion(rot) * Translate(pos);
+		return true;
+	}
 }
 
 void Coo::Graphics::Animator::Bind(AnimationBank * animationBank)
 {
 	mAnimationBank = animationBank;
+	mTimers.resize(animationBank->animationClips.size(), 0.0f);
+	mPlaySpeed.resize(animationBank->animationClips.size(), 1.0f);
+	mIsLoop.resize(animationBank->animationClips.size(), true);
 }
 
 void Coo::Graphics::Animator::DebugUI()
@@ -81,7 +161,7 @@ void Coo::Graphics::Animator::DebugUI()
 	static const char* defaultBoneStr = "default bone transform";
 	ImGui::Begin("Animator", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	ImGui::DragInt("Animation Clip", &currAnim, 0.1f, -1, (mAnimationBank ? static_cast<int>(mAnimationBank->animationClips.size()) : 0) - 1);
-	if (ImGui::CollapsingHeader("Current Selected")) 
+	if (ImGui::CollapsingHeader("Current Selected"))
 	{
 		if (selectClip)
 		{
@@ -96,24 +176,40 @@ void Coo::Graphics::Animator::DebugUI()
 	{
 		PlayAnimationClip(currAnim);
 	}
-	if (ImGui::CollapsingHeader("Current Playing")) 
+	if (ImGui::Button("Resume selected"))
+	{
+		PlayAnimationClip(currAnim, false);
+	}
+	if (ImGui::CollapsingHeader("Transition"))
+	{
+		ImGui::DragInt("Transit to", &mNextAnimationClip, 0.1f, 0, (mAnimationBank ? static_cast<int>(mAnimationBank->animationClips.size()) : 0) - 1);
+		ImGui::DragFloat("Exit Time", &mExitTime, 0.1f, 0.0f, 1.0f);
+		ImGui::DragFloat("Transition Duration", &mTransitionDuration, 0.1f, 0.0f, 1.0f);
+		if (ImGui::Button("Add Transition"))
+		{
+			AddTransition(mNextAnimationClip, mExitTime, mTransitionDuration);
+		}
+	}
+	if (ImGui::CollapsingHeader("Current Playing"))
 	{
 		const AnimationClip* animClip = GetCurrAnimationClip();
 		if (animClip)
 		{
 			animClip->DuiShowInfo();
-			ImGui::Checkbox("Loop", &loop);
-			ImGui::DragFloat("Time", &timer, 0.1f, 0.0f, animClip->duration);
-			ImGui::DragFloat("Play Speed", &playSpeed, 0.1f, 0.0f, 20.0f);
+			bool isLoop = mIsLoop[mCurrAnimationClip];
+			ImGui::Checkbox("Loop", &isLoop);
+			mIsLoop[mCurrAnimationClip] = isLoop;
+			ImGui::DragFloat("Time", &mTimers[mCurrAnimationClip], 0.01f, 0.0f, animClip->duration);
+			ImGui::DragFloat("Play Speed", &mPlaySpeed[mCurrAnimationClip], 0.01f, 0.0f, 20.0f);
 		}
 		else
 		{
 			ImGui::Text("default bone transform");
 		}
 	}
-	if (ImGui::Button(paused ? "Unpause" : "Pause")) 
+	if (ImGui::Button(mPaused ? "Unpause" : "Pause"))
 	{
-		paused = !paused;
+		mPaused = !mPaused;
 	}
 	ImGui::End();
 }

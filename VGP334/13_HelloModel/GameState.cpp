@@ -21,6 +21,8 @@ void GameState::Initialize()
 	animationBank.Load("../../Assets/Models/ybot/bboyUprock.animation", true);
 	animationBank.Load("../../Assets/Models/ybot/dancing.animation", true);
 	animationBank.Load("../../Assets/Models/ybot/hipHopDancing.animation", true);
+	animationBank.Load("../../Assets/Models/ybot/walking.animation", true);
+	animationBank.Load("../../Assets/Models/ybot/running.animation", true);
 	animator.Bind(&animationBank);
 
 	GraphicsSystem::Get()->SetClearColor(Colors::Green);
