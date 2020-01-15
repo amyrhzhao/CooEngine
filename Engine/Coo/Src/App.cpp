@@ -56,13 +56,11 @@ void App::Run(AppConfig appConfig)
 		done = mWindow.ProcessMessage();
 		if (done) { break; }
 
-		if (mNextState != nullptr)
+		if (mNextState)
 		{
 			mCurrentState->Terminate();
-			mNextState->Initialize();
-
-			mCurrentState = mNextState;
-			mNextState = nullptr;
+			mCurrentState = std::exchange(mNextState, nullptr);
+			mCurrentState->Initialize();			
 		}
 
 		auto inputSystem = InputSystem::Get();
