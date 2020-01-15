@@ -31,7 +31,7 @@ void App::Run(AppConfig appConfig)
 	// Initialize graphic system
 	GraphicsSystem::StaticInitialize(mWindow.GetWindowHandle(), false);
 	SimpleDraw::StaticInitialize();
-	Dui::StaticInitialize(mWindow.GetWindowHandle(),true);
+	Dui::StaticInitialize(mWindow.GetWindowHandle(),true,true);
 
 	// Initialize the texture manager
 	Graphics::TextureManager::StaticInitialize(appConfig.assetsDirectory / "Images");

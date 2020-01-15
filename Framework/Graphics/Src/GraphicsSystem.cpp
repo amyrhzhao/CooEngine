@@ -125,6 +125,7 @@ void GraphicsSystem::Terminate()
 
 void GraphicsSystem::BeginRender()
 {
+	mImmediateContext->OMSetRenderTargets(1, &mRenderTargetView, mDepthStencilView);
 	mImmediateContext->ClearRenderTargetView(mRenderTargetView, (FLOAT*)(&mClearColor));
 	mImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
