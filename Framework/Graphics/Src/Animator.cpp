@@ -48,6 +48,7 @@ void Animator::PlayAnimationClip(int clip, bool playFromBegining)
 
 void Coo::Graphics::Animator::AddTransition(int clip, float exitTime, float transitionDuration)
 {
+	if (mCurrAnimationClip == clip) { return; }
 	mTransiting = true;
 	mInTransition = false;
 	mNextAnimationClip = clip;

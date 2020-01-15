@@ -180,7 +180,7 @@ void Coo::Graphics::Skeleton::DebugUI()
 void Coo::Graphics::Skeleton::BoneDebugUI(Bone* b)
 {
 	if (b == nullptr) { return; }
-	if (ImGui::TreeNode(b->name.c_str()))
+	if (ImGui::TreeNode( (b->name +" "+ std::to_string(b->index)).c_str()))
 	{
 		//ImGui::CollapsingHeader(b->name.c_str());
 		for (size_t i = 0; i < b->children.size(); ++i)
