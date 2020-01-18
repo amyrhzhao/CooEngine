@@ -122,7 +122,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_HelloPhysics", "VGP334\1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "Framework\Network\Network.vcxproj", "{81554B70-A5BA-4CDB-8C36-86F434C4DFB3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreTest", "CoreTest\CoreTest.vcxproj", "{200A0121-66E5-415E-A3FF-572CB0189435}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreTest", "UnitTests\CoreTest\CoreTest.vcxproj", "{200A0121-66E5-415E-A3FF-572CB0189435}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
