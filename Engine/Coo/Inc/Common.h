@@ -8,6 +8,7 @@
 #include <Input/Inc/Input.h>
 #include <Math/Inc/CooMath.h>
 #include <Physics/Inc/Physics.h>
+#include <Network/Inc/Network.h>
 
 // External headers
 #include <ImGui/Inc/imgui.h>
