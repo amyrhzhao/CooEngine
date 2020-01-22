@@ -5,7 +5,7 @@
 Coo::Core::BlockAllocator::BlockAllocator(size_t blockSize, size_t capacity)
 	:mBlockSize(blockSize), mCapacity(capacity)
 {
-	mData = new uint8_t[capacity * blockSize];
+	mData = static_cast<uint8_t*>(malloc(capacity * blockSize));
 	mFreeSlots.reserve(capacity);
 	for (size_t i = 0; i < capacity; ++i)
 	{
@@ -15,7 +15,7 @@ Coo::Core::BlockAllocator::BlockAllocator(size_t blockSize, size_t capacity)
 
 Coo::Core::BlockAllocator::~BlockAllocator()
 {
-	delete mData;
+	free(mData);
 }
 
 void* Coo::Core::BlockAllocator::Allocate()
@@ -34,12 +34,9 @@ void* Coo::Core::BlockAllocator::Allocate()
 
 void Coo::Core::BlockAllocator::Free(void * ptr)
 {
-	size_t offset = static_cast<uint8_t*>(ptr) - mData;
-	ASSERT(offset % mBlockSize == 0, "Pointer does not belong to this BlockAllocator");
+	ptrdiff_t offset = static_cast<uint8_t*>(ptr) - mData;
+	ASSERT(offset % mBlockSize == 0 && offset >= 0, "Pointer does not belong to this BlockAllocator");
 	size_t index = offset / mBlockSize;
-	ASSERT(index < mCapacity && index >= 0, "Pointer out of boundry");
-	if (index < mCapacity && index >= 0)
-	{
-		mFreeSlots.push_back(index);
-	}
+	ASSERT(index < mCapacity, "Pointer out of boundry");
+	mFreeSlots.push_back(index);
 }

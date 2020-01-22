@@ -20,9 +20,11 @@ namespace Coo::Core
 		size_t GetCapacity() const { return mCapacity; }
 
 	protected:
-		uint8_t* mData;
+		uint8_t* mData = nullptr;
 		size_t mBlockSize;
 		size_t mCapacity;
+		// todo: write a advanced version, use next free slot. check notes
+		// intptr_t mFreeSlot;
 		std::vector<size_t> mFreeSlots;
 	};
 } // namespace Coo::Core
