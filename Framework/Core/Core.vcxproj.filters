@@ -31,6 +31,9 @@
     <ClInclude Include="Inc\BlockAllocator.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\TypedAllocator.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Inc">

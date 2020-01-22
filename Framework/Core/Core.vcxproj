@@ -153,6 +153,7 @@
     <ClInclude Include="Inc\MemoryStream.h" />
     <ClInclude Include="Inc\StreamReader.h" />
     <ClInclude Include="Inc\StreamWriter.h" />
+    <ClInclude Include="Inc\TypedAllocator.h" />
     <ClInclude Include="Inc\Window.h" />
     <ClInclude Include="Inc\WindowMessageHandler.h" />
     <ClInclude Include="Src\Precompiled.h" />

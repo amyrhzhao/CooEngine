@@ -8,6 +8,7 @@
 #include "WindowMessageHandler.h"
 
 #include "BlockAllocator.h"
+#include "TypedAllocator.h"
 #include "MemoryStream.h"
 #include "StreamReader.h"
 #include "StreamWriter.h"
