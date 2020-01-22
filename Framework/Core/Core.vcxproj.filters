@@ -19,20 +19,23 @@
     <ClInclude Include="Inc\WindowMessageHandler.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MemoryStream.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\StreamReader.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\StreamWriter.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\BlockAllocator.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Memory</Filter>
     </ClInclude>
     <ClInclude Include="Inc\TypedAllocator.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Handle.h">
+      <Filter>Inc\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MemoryStream.h">
+      <Filter>Inc\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\StreamReader.h">
+      <Filter>Inc\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\StreamWriter.h">
+      <Filter>Inc\Memory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +44,12 @@
     </Filter>
     <Filter Include="Src">
       <UniqueIdentifier>{870fd7f5-c9b2-49b5-9ebf-84b37dd06741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Memory">
+      <UniqueIdentifier>{ce284e05-c404-4936-9e4f-0392eb4d7cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Memory">
+      <UniqueIdentifier>{34b2f739-982b-4a11-9658-4c4455e94f89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,17 +62,17 @@
     <ClCompile Include="Src\WindowMessageHandler.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\MemoryStream.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="Src\BlockAllocator.cpp">
+      <Filter>Src\Memory</Filter>
     </ClCompile>
     <ClCompile Include="Src\StreamReader.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MemoryStream.cpp">
+      <Filter>Src\Memory</Filter>
     </ClCompile>
     <ClCompile Include="Src\StreamWriter.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\BlockAllocator.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

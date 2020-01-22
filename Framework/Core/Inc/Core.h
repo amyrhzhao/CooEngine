@@ -9,6 +9,7 @@
 
 #include "BlockAllocator.h"
 #include "TypedAllocator.h"
+#include "Handle.h"
 #include "MemoryStream.h"
 #include "StreamReader.h"
 #include "StreamWriter.h"
