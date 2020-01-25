@@ -1,13 +1,13 @@
 #ifndef INCLUDED_COOENGINE_CORE_HANDLEPOOL_H
 #define INCLUDED_COOENGINE_CORE_HANDLEPOOL_H
 
-namespace Coo::Core 
+namespace Coo::Core
 {
 	template<class DataType>
 	class Handle;
 
 	template<class DataType>
-	class HandlePool 
+	class HandlePool
 	{
 	public:
 		using HandleType = Handle<DataType>;
@@ -23,8 +23,8 @@ namespace Coo::Core
 	private:
 		struct Entry
 		{
-			DataType* instance;
-			uint32_t generation;
+			DataType* instance = nullptr;
+			size_t generation = 0;
 		};
 
 		std::vector<Entry> mEntries;
@@ -36,7 +36,7 @@ namespace Coo::Core
 	{
 		mEntries.resize(capacity + 1);
 		mFreeSlots.resize(capacity);
-		for (size_t i = 1; i < mFreeSlots.size() + 1; ++i) 
+		for (size_t i = 1; i < mFreeSlots.size() + 1; ++i)
 		{
 			mFreeSlots[i] = i;
 		}
@@ -45,21 +45,32 @@ namespace Coo::Core
 	template<class DataType>
 	inline HandlePool<DataType>::~HandlePool()
 	{
-		//???
+		for (auto& entry : mEntries)
+		{
+			ASSERT(entry.instance == nullptr, "There is still live handle left in handle pool.");
+		}
 	}
 
 	template<class DataType>
 	inline Handle<DataType> HandlePool<DataType>::Register(DataType* instance)
 	{
-		size_t slot = mFreeSlots.back();
-		mFreeSlots.pop_back();
-
-		auto& entry = mEntries[slot];
-		entry.instance = instance;
-		
 		Handle<DataType> newHandle;
-		newHandle.mIndex = slot;
-		newHandle.mGeneration = entry.generation;
+		if (mFreeSlots.empty())
+		{
+			newHandle.mIndex = 0;
+			newHandle.mGeneration = 0;
+		}
+		else
+		{
+			size_t slot = mFreeSlots.back();
+			mFreeSlots.pop_back();
+
+			auto& entry = mEntries[slot];
+			entry.instance = instance;
+
+			newHandle.mIndex = slot;
+			newHandle.mGeneration = entry.generation;
+		}
 		return newHandle;
 	}
 
@@ -80,7 +91,7 @@ namespace Coo::Core
 	template<class DataType>
 	inline DataType* HandlePool<DataType>::Get(HandleType handle)
 	{
-		if (IsValid(handle)) 
+		if (IsValid(handle))
 		{
 			return mEntries[handle.mIndex];
 		}
