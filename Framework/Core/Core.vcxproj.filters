@@ -37,6 +37,9 @@
     <ClInclude Include="Inc\StreamWriter.h">
       <Filter>Inc\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\HandlePool.h">
+      <Filter>Inc\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Inc">

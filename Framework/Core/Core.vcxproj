@@ -151,6 +151,7 @@
     <ClInclude Include="Inc\Core.h" />
     <ClInclude Include="Inc\Debug.h" />
     <ClInclude Include="Inc\Handle.h" />
+    <ClInclude Include="Inc\HandlePool.h" />
     <ClInclude Include="Inc\MemoryStream.h" />
     <ClInclude Include="Inc\StreamReader.h" />
     <ClInclude Include="Inc\StreamWriter.h" />
