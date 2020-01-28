@@ -68,6 +68,7 @@ namespace Coo::Core
 			auto& entry = mEntries[slot];
 			entry.instance = instance;
 
+			newHandle.sPool = this;
 			newHandle.mIndex = slot;
 			newHandle.mGeneration = entry.generation;
 		}
