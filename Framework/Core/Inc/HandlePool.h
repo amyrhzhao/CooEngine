@@ -34,6 +34,7 @@ namespace Coo::Core
 	template<class DataType>
 	inline HandlePool<DataType>::HandlePool(size_t capacity)
 	{
+		Handle<DataType>::sPool = this;
 		mEntries.resize(capacity + 1);
 		mFreeSlots.resize(capacity);
 		for (size_t i = 1; i < mFreeSlots.size() + 1; ++i)
@@ -55,12 +56,7 @@ namespace Coo::Core
 	inline Handle<DataType> HandlePool<DataType>::Register(DataType* instance)
 	{
 		Handle<DataType> newHandle;
-		if (mFreeSlots.empty())
-		{
-			newHandle.mIndex = 0;
-			newHandle.mGeneration = 0;
-		}
-		else
+		if (!mFreeSlots.empty())
 		{
 			size_t slot = mFreeSlots.back();
 			mFreeSlots.pop_back();
@@ -68,7 +64,6 @@ namespace Coo::Core
 			auto& entry = mEntries[slot];
 			entry.instance = instance;
 
-			newHandle.sPool = this;
 			newHandle.mIndex = slot;
 			newHandle.mGeneration = entry.generation;
 		}
