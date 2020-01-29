@@ -6,8 +6,9 @@
 namespace Coo::Core 
 {
 	template<class DataType>
-	class TypedAllocator : BlockAllocator
+	class TypedAllocator : public BlockAllocator
 	{
+	public:
 		TypedAllocator(size_t capacity) :
 			BlockAllocator(sizeof(DataType), capacity) {}
 
@@ -21,7 +22,7 @@ namespace Coo::Core
 	template<class ...Args>
 	inline DataType * TypedAllocator<DataType>::New(Args&& ...args)
 	{
-		DataType* mem = static_cast<DataType>(Allocate());
+		DataType* mem = static_cast<DataType*>(Allocate());
 		if (mem != nullptr)
 		{
 			new (mem) DataType(std::forward<Args>(args)...);
