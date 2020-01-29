@@ -16,6 +16,7 @@ namespace Coo::Core
 
 		HandleType Register(DataType* instance);
 		void Unregister(HandleType handle);
+		void Flush();
 
 		bool IsValid(HandleType handle) const;
 		DataType* Get(HandleType handle);
@@ -36,10 +37,10 @@ namespace Coo::Core
 	{
 		Handle<DataType>::sPool = this;
 		mEntries.resize(capacity + 1);
-		mFreeSlots.resize(capacity);
-		for (size_t i = 1; i < mFreeSlots.size() + 1; ++i)
+		mFreeSlots.reserve(capacity);
+		for (size_t i = capacity; i > 0; --i)
 		{
-			mFreeSlots[i] = i;
+			mFreeSlots.push_back(i);
 		}
 	}
 
@@ -74,14 +75,32 @@ namespace Coo::Core
 	inline void HandlePool<DataType>::Unregister(HandleType handle)
 	{
 		auto& entry = mEntries[handle.mIndex];
-		entry.mGeneration++;
+		entry.generation++;
 		entry.instance = nullptr;
+	}
+
+	template<class DataType>
+	inline void HandlePool<DataType>::Flush()
+	{
+		// Force increment generation and invalidate all existing handles
+		for (auto& entry : mEntries) 
+		{
+			entry.generation++;
+			entry.instance = nullptr;
+		}
+
+		// Reclaim all slots
+		mFreeSlots.clear();
+		for (size_t i = mFreeSlots.capacity(); i > 0; --i)
+		{
+			mFreeSlots.push_back(i);
+		}
 	}
 
 	template<class DataType>
 	inline bool HandlePool<DataType>::IsValid(HandleType handle) const
 	{
-		return handle.mGeneration == mEntries[handle.mIndex].generation;
+		return handle.mGeneration == mEntries[handle.mIndex].generation && mEntries[handle.mIndex].instance;
 	}
 
 	template<class DataType>
@@ -89,7 +108,7 @@ namespace Coo::Core
 	{
 		if (IsValid(handle))
 		{
-			return mEntries[handle.mIndex];
+			return mEntries[handle.mIndex].instance;
 		}
 		else
 		{
