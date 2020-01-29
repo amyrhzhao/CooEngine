@@ -40,6 +40,8 @@
     <ClInclude Include="Inc\HandlePool.h">
       <Filter>Inc\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\MetaType.h" />
+    <ClInclude Include="Inc\MetaClass.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Inc">
@@ -77,5 +79,6 @@
     <ClCompile Include="Src\StreamWriter.cpp">
       <Filter>Src\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Src\MetaType.cpp" />
   </ItemGroup>
 </Project>
