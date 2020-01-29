@@ -13,8 +13,6 @@ namespace CoreTest
 		{
 		public:
 			int a = 0;
-			//Foo() : a(4) {}
-			//~Foo() { a = 31; }
 		};
 
 		TEST_METHOD(HandleDefaultHandleTest)

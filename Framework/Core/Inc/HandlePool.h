@@ -35,27 +35,36 @@ namespace Coo::Core
 	template<class DataType>
 	inline HandlePool<DataType>::HandlePool(size_t capacity)
 	{
-		Handle<DataType>::sPool = this;
+		ASSERT(capacity > 0, "Invalid capacity!");
 		mEntries.resize(capacity + 1);
 		mFreeSlots.reserve(capacity);
 		for (size_t i = capacity; i > 0; --i)
 		{
 			mFreeSlots.push_back(i);
 		}
+
+		// Register itself with the handle type
+		ASSERT(HandleType::sPool == nullptr, "Cannot have more than one pool for the same type!");
+		Handle<DataType>::sPool = this;
 	}
 
 	template<class DataType>
 	inline HandlePool<DataType>::~HandlePool()
 	{
-		for (auto& entry : mEntries)
-		{
-			ASSERT(entry.instance == nullptr, "There is still live handle left in handle pool.");
-		}
+		// Check thar all handles are freed
+		ASSERT(mFreeSlots.size() == mFreeSlots.capacity(), "There is still live handle left in handle pool.");
+
+		// Unregister itself with the handle type
+		ASSERT(HandleType::sPool == this, "Something is wrong");
+		HandleType::sPool = nullptr;
 	}
 
 	template<class DataType>
 	inline Handle<DataType> HandlePool<DataType>::Register(DataType* instance)
 	{
+		ASSERT(instance != nullptr, "Handle Pointer cannot be nulllptr.");
+		ASSERT(!mFreeSlots.empty(), "No more free slots.");
+
 		Handle<DataType> newHandle;
 		if (!mFreeSlots.empty())
 		{
@@ -86,7 +95,6 @@ namespace Coo::Core
 		for (auto& entry : mEntries) 
 		{
 			entry.generation++;
-			entry.instance = nullptr;
 		}
 
 		// Reclaim all slots
