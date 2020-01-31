@@ -40,4 +40,14 @@ inline void SafeRelease(T*& ptr)
 	}
 }
 
+template <class T>
+inline void SafeDelete(T*& ptr)
+{
+	if(ptr)
+	{
+		delete ptr;
+		ptr = nullptr;
+	}
+}
+
 #endif // !INCLUDED_COOENGINE_CORE_COMMON_H
