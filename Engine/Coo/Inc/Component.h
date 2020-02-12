@@ -8,8 +8,10 @@ namespace Coo
 	class Component
 	{
 	public:
-		Component();
-		virtual ~Component() {}
+		META_CLASS_DECLARE;
+
+		//Component();
+		virtual ~Component() = default;
 
 		virtual void Initialize() {}
 		virtual void Terminate() {}

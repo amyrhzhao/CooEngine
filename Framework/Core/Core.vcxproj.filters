@@ -64,6 +64,9 @@
     <ClInclude Include="Inc\Debug.h">
       <Filter>Inc\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\MetaRegistration.h">
+      <Filter>Inc\Meta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Inc">
@@ -125,9 +128,6 @@
     <ClCompile Include="Src\MetaArray.cpp">
       <Filter>Src\Meta</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Meta.cpp">
-      <Filter>Src\Meta</Filter>
-    </ClCompile>
     <ClCompile Include="Src\MetaRegistry.cpp">
       <Filter>Src\Meta</Filter>
     </ClCompile>
@@ -136,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Src\Window.cpp">
       <Filter>Src\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MetaRegistration.cpp">
+      <Filter>Src\Meta</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

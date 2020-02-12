@@ -16,6 +16,8 @@
 #include "Vector4.h"
 #include "Quaternion.h"
 
+#include "MetaRegistration.h"
+
 #pragma warning(default : 4201)
 #pragma warning(default : 4458)
 

@@ -7,6 +7,24 @@
     <Filter Include="Src">
       <UniqueIdentifier>{1a4f7689-3706-4292-9a0d-95e40d33546d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\GameObject">
+      <UniqueIdentifier>{bf6d8363-c377-4891-b8e7-45f9a328979e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\App">
+      <UniqueIdentifier>{683825ca-188a-4ea0-8547-e8b5a41269a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Components">
+      <UniqueIdentifier>{6e939773-4643-4cc9-8b28-0cee43d5587a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\App">
+      <UniqueIdentifier>{dd33f0d8-ae58-4079-b3ad-9d767bdbee34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\GameObject">
+      <UniqueIdentifier>{ab74608c-7705-46c9-9f75-163404f3f91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Components">
+      <UniqueIdentifier>{4428c825-2b63-4b4a-8a02-37ea462e9ff6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -18,34 +36,58 @@
     <ClInclude Include="Src\Precompiled.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\AppState.h">
+    <ClInclude Include="Inc\MetaRegistration.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\App.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AppState.h">
+      <Filter>Inc\App</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Component.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Inc\GameObject.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GameObjectFactory.h">
+      <Filter>Inc\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\TransformComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ColliderComponent.h">
+      <Filter>Inc\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\App.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Coo.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Component.cpp">
+    <ClCompile Include="Src\MetaRegistration.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Src\App.cpp">
+      <Filter>Src\App</Filter>
+    </ClCompile>
     <ClCompile Include="Src\GameObject.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameObjectFactory.cpp">
+      <Filter>Src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ColliderComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Component.cpp">
+      <Filter>Src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\TransformComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

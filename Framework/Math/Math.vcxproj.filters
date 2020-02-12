@@ -7,6 +7,24 @@
     <Filter Include="Src">
       <UniqueIdentifier>{7d8d019a-447e-4cd5-b5f4-84da73d6426e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Geometry2D">
+      <UniqueIdentifier>{b0a758f2-34c2-4f49-869b-5b231d53b30a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\LinearAlgebra">
+      <UniqueIdentifier>{10594aaf-d2b1-4eae-9c56-e40db3864080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\pch">
+      <UniqueIdentifier>{bb6182bf-4330-4494-af04-8a10f934c879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Meta">
+      <UniqueIdentifier>{f08bb497-3d2b-49fe-ba5e-4885e32736fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Meta">
+      <UniqueIdentifier>{5270f01b-bb7d-447a-a9ce-1053709d5552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\Geometry3D">
+      <UniqueIdentifier>{a37dbe21-e77d-44ab-9fda-a9ba459df3dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -15,40 +33,49 @@
     <ClInclude Include="Inc\CooMath.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Vector3.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Precompiled.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Vector4.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Matrix4.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Vector2.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\Circle.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Matrix3.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Geometry2D</Filter>
     </ClInclude>
     <ClInclude Include="Inc\LineSegment.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\Geometry2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Matrix3.h">
+      <Filter>Inc\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Matrix4.h">
+      <Filter>Inc\LinearAlgebra</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Quaternion.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Vector2.h">
+      <Filter>Inc\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Vector3.h">
+      <Filter>Inc\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Vector4.h">
+      <Filter>Inc\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Precompiled.h">
+      <Filter>Src\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MetaRegistration.h">
+      <Filter>Inc\Meta</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AABB.h">
+      <Filter>Inc\Geometry3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Precompiled.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\CooMath.cpp">
       <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Precompiled.cpp">
+      <Filter>Src\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MetaRegistration.cpp">
+      <Filter>Src\Meta</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

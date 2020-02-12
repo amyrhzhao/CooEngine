@@ -18,5 +18,6 @@
 
 // Meta
 #include "Meta.h"
+#include "MetaRegistration.h"
 
 #endif // !INCLUDED_COOENGINE_CORE_H

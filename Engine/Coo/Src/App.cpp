@@ -1,6 +1,7 @@
 #include "Precompiled.h"
 #include "App.h"
 #include "AppState.h"
+#include "MetaRegistration.h"
 
 using namespace Coo;
 using namespace Coo::Input;
@@ -16,6 +17,10 @@ void App::ChangeState(std::string name)
 
 void App::Run(AppConfig appConfig)
 {
+	Core::StaticRegister();
+	Math::StaticRegister();
+	Coo::StaticRegister();
+
 	mAppConfig = appConfig;
 
 	// Set up application window

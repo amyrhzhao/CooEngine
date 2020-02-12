@@ -3,8 +3,18 @@
 
 #include "Common.h"
 
+// App headers
 #include "App.h"
 #include "AppState.h"
+
+// GameObject headers
+#include "Component.h"
+#include "GameObject.h"
+#include "GameObjectFactory.h"
+
+// Components
+#include "ColliderComponent.h"
+#include "TransformComponent.h"
 
 namespace Coo
 {

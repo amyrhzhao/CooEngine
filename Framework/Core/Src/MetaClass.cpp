@@ -3,6 +3,7 @@
 #include "MetaType.h"
 #include "MetaField.h"
 #include "Debug.h"
+#include "MetaRegistry.h"
 
 using namespace Coo::Core::Meta;
 
@@ -11,6 +12,7 @@ MetaClass::MetaClass(const char * name, size_t size, MetaType::CreateFunc create
 	, mParent(parent)
 	, mFields(std::move(fields))
 {
+	Register(this);
 }
 
 const MetaClass* Coo::Core::Meta::MetaClass::GetParent() const

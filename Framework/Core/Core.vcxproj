@@ -158,6 +158,7 @@
     <ClInclude Include="Inc\MetaClass.h" />
     <ClInclude Include="Inc\MetaField.h" />
     <ClInclude Include="Inc\MetaPointer.h" />
+    <ClInclude Include="Inc\MetaRegistration.h" />
     <ClInclude Include="Inc\MetaRegistry.h" />
     <ClInclude Include="Inc\MetaType.h" />
     <ClInclude Include="Inc\MetaUtil.h" />
@@ -169,11 +170,11 @@
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Meta.cpp" />
     <ClCompile Include="Src\MetaArray.cpp" />
     <ClCompile Include="Src\MetaClass.cpp" />
     <ClCompile Include="Src\MetaField.cpp" />
     <ClCompile Include="Src\MetaPointer.cpp" />
+    <ClCompile Include="Src\MetaRegistration.cpp" />
     <ClCompile Include="Src\MetaRegistry.cpp" />
     <ClCompile Include="Src\MetaType.cpp" />
     <ClCompile Include="Src\BlockAllocator.cpp" />

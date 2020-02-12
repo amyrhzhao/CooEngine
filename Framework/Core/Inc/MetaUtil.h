@@ -55,6 +55,38 @@ namespace Coo::Core::Meta
 		return Detail::DeduceTypeImpl(static_cast<DataType*>(nullptr));
 	}
 
+	template <class ClassType, class DataType>
+	inline const MetaType* DeduceMemberType(DataType ClassType::*)
+	{
+		return DeduceType<DataType>();
+	}
+
+	template <class ClassType, class DataType>
+	inline size_t GetFieldOffset(DataType ClassType::* field)
+	{
+		return (size_t)(void*)&(((ClassType*)nullptr)->*field);
+	}
+
+	template <class BaseType, class DerivedType>
+	inline DerivedType* DynamicCast(BaseType* ptr)
+	{
+		if (ptr->GetMetaClass() != DerivedType::StaticGetMetaClass())
+			return nullptr;
+		return static_cast<DerivedType*>(ptr);
+	}
+
+	template <class BaseType, class DerivedType>
+	inline bool IsBaseOf()
+	{
+		auto parent = DerivedType::StaticGetMetaClass()->GetParent();
+		while (parent)
+		{
+			if (parent == BaseType::StaticGetMetaClass())
+				return true;
+			parent = parent->GetParent();
+		}
+		return false;
+	}
 } // namespace Coo::Core::Meta
 
 
