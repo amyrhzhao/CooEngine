@@ -126,6 +126,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreTest", "UnitTests\CoreT
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamTest", "UnitTests\StreamTest\StreamTest.vcxproj", "{0F32B805-8199-42A9-8E4C-C3BDF8D12ABE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CooEditor", "Tools\CooEditor\CooEditor.vcxproj", "{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -462,6 +464,14 @@ Global
 		{0F32B805-8199-42A9-8E4C-C3BDF8D12ABE}.Release|x64.Build.0 = Release|x64
 		{0F32B805-8199-42A9-8E4C-C3BDF8D12ABE}.Release|x86.ActiveCfg = Release|Win32
 		{0F32B805-8199-42A9-8E4C-C3BDF8D12ABE}.Release|x86.Build.0 = Release|Win32
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Debug|x64.ActiveCfg = Debug|x64
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Debug|x64.Build.0 = Debug|x64
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Debug|x86.ActiveCfg = Debug|Win32
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Debug|x86.Build.0 = Debug|Win32
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Release|x64.ActiveCfg = Release|x64
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Release|x64.Build.0 = Release|x64
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Release|x86.ActiveCfg = Release|Win32
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -510,6 +520,7 @@ Global
 		{81554B70-A5BA-4CDB-8C36-86F434C4DFB3} = {0542998C-1FD6-4C1D-94E5-E85527BC7B6E}
 		{200A0121-66E5-415E-A3FF-572CB0189435} = {91A0A45C-0FD7-4177-A88A-F036AB5AFA42}
 		{0F32B805-8199-42A9-8E4C-C3BDF8D12ABE} = {91A0A45C-0FD7-4177-A88A-F036AB5AFA42}
+		{A747F6C5-819C-4743-8DF6-E4F10E04CEFA} = {BBAD0A61-D571-4835-8D22-584A5F862662}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3560B8E-5A4A-41E6-8D6D-E2487FB559A5}

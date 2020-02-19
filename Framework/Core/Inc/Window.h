@@ -8,7 +8,7 @@ class Window
 public:
 	Window() = default;
 
-	void Initialize(HINSTANCE instance, LPCSTR appName, uint32_t width, uint32_t height);
+	void Initialize(HINSTANCE instance, LPCSTR appName, uint32_t width, uint32_t height, bool maximize = false);
 	void Terminate();
 
 	bool ProcessMessage();

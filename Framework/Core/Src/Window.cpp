@@ -17,7 +17,7 @@ LRESULT CALLBACK WinProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam
 	return DefWindowProcA(handle, message, wParam, lParam);
 }
 
-void Window::Initialize(HINSTANCE instance, LPCSTR appName, uint32_t width, uint32_t height)
+void Window::Initialize(HINSTANCE instance, LPCSTR appName, uint32_t width, uint32_t height, bool maximize)
 {
 	mInstance = instance;
 	mAppName = appName;
@@ -66,7 +66,7 @@ void Window::Initialize(HINSTANCE instance, LPCSTR appName, uint32_t width, uint
 		instance, nullptr
 	);
 
-	ShowWindow(mWindow, true);
+	ShowWindow(mWindow, maximize ? SW_MAXIMIZE : SW_SHOWNORMAL);
 
 	SetCursorPos(screenWidth / 2, screenHeight / 2);
 }

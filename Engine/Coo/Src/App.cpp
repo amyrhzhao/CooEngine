@@ -17,6 +17,9 @@ void App::ChangeState(std::string name)
 
 void App::Run(AppConfig appConfig)
 {
+	LOG("App Starting");
+
+	LOG("Registering meta types");
 	Core::StaticRegister();
 	Math::StaticRegister();
 	Coo::StaticRegister();
@@ -24,11 +27,13 @@ void App::Run(AppConfig appConfig)
 	mAppConfig = appConfig;
 
 	// Set up application window
+	LOG("Creating window");
 	mWindow.Initialize(
 		GetModuleHandle(NULL),
 		mAppConfig.appName.c_str(),
 		mAppConfig.windowWidth,
-		mAppConfig.windowHeight);
+		mAppConfig.windowHeight,
+		mAppConfig.maximize);
 
 	// Initialize the input system
 	InputSystem::StaticInitialize(mWindow.GetWindowHandle());
@@ -36,7 +41,7 @@ void App::Run(AppConfig appConfig)
 	// Initialize graphic system
 	GraphicsSystem::StaticInitialize(mWindow.GetWindowHandle(), false);
 	SimpleDraw::StaticInitialize();
-	Dui::StaticInitialize(mWindow.GetWindowHandle(),true,true);
+	Dui::StaticInitialize(mWindow.GetWindowHandle(), mAppConfig.imGuiDocking, true);
 
 	// Initialize the texture manager
 	Graphics::TextureManager::StaticInitialize(appConfig.assetsDirectory / "Images");

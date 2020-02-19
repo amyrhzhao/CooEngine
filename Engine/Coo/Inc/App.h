@@ -17,6 +17,8 @@ struct AppConfig
 	std::filesystem::path assetsDirectory = L"../../Assets";
 	uint32_t windowWidth = 1280;
 	uint32_t windowHeight = 720;
+	bool maximize = false;
+	bool imGuiDocking = false;
 };
 
 class App

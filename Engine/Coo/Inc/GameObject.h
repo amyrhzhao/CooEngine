@@ -62,6 +62,7 @@ namespace Coo
 		}
 
 	private:
+		friend class World;
 		using Components = std::vector<std::unique_ptr<Component>>;
 
 		std::string mName = "NoName";

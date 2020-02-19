@@ -60,6 +60,9 @@
     <ClInclude Include="Inc\ColliderComponent.h">
       <Filter>Inc\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\World.h">
+      <Filter>Inc\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Src\TransformComponent.cpp">
       <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\World.cpp">
+      <Filter>Src\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
