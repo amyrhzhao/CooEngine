@@ -6,9 +6,12 @@ using namespace Coo::Graphics;
 
 void GameState::Initialize()
 {
-	ObjLoader::Load("../../Assets/Models/Tank/tank.obj", 0.01f, mMesh);
-	mMeshBuffer.Initialize(mMesh);
+	ObjLoader::Load("../../Assets/Models/Tank/tank.obj", 0.01f, mTankMesh);
+	mTankMeshBuffer.Initialize(mTankMesh);
 	
+	mPlaneMesh = MeshBuilder::CreatePlane(500.0f,500.0f);
+	mPlaneMeshBuffer.Initialize(mPlaneMesh);
+
 	GraphicsSystem::Get()->SetClearColor(Colors::ForestGreen);
 	mCamera.SetPosition({ 0.0f,50.0f,-200.0f });
 	mCamera.SetDirection({ 0.0f,0.0f,1.0f });
@@ -18,7 +21,7 @@ void GameState::Initialize()
 	mPixelShader.Initialize(L"../../Assets/Shaders/Standard.fx");
 	diffuseMap = tm->LoadTexture("../../Assets/Models/Tank/tank_diffuse.jpg",false);
 	specularMap = tm->LoadTexture("../../Assets/Models/Tank/tank_specular.jpg",false);
-	//normalMap = tm->LoadTexture("../../Assets/Models/Tank/tank_normal.jpg",false);
+	normalMap = tm->LoadTexture("../../Assets/Models/Tank/tank_normal.jpg",false);
 
 	mTransformBuffer.Initialize();
 	mLightBuffer.Initialize();
@@ -46,7 +49,8 @@ void GameState::Terminate()
 	mTransformBuffer.Terminate();
 	mPixelShader.Terminate();
 	mVertexShader.Terminate();
-	mMeshBuffer.Terminate();
+	mPlaneMeshBuffer.Terminate();
+	mTankMeshBuffer.Terminate();
 }
 
 void GameState::Update(float deltaTime)
@@ -109,12 +113,14 @@ void GameState::Render()
 	tm->BindPS(diffuseMap, 0);
 	tm->BindVS(specularMap, 1);
 	tm->BindPS(specularMap, 1);
-	//tm->BindVS(normalMap, 3);
-	//tm->BindPS(normalMap, 3);
+	tm->BindVS(normalMap, 3);
+	tm->BindPS(normalMap, 3);
+
 
 	auto rs = RasterizerStateManager::Get()->GetRasterizerState("CullNoneSolid");
 	rs->Set();
-	mMeshBuffer.Render();
+	mPlaneMeshBuffer.Render();
+	mTankMeshBuffer.Render();
 	rs->Clear();
 }
 

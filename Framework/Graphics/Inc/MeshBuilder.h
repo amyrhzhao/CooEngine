@@ -19,7 +19,8 @@ public:
 	
 	static MeshPC CreatePlanePC(float width = 1.0f, float height = 1.0f);
 	static MeshPX CreatePlanePX(float width = 1.0f, float height = 1.0f, uint32_t columns = 1, uint32_t raws = 1);
-	
+	static Mesh CreatePlane(float width = 1.0f, float height = 1.0f, uint32_t columns = 1, uint32_t raws = 1);
+
 	static Mesh CreateSphere(float radius = 1.0f, uint32_t horizontalCount = 32, uint32_t verticalCount = 32);
 	static MeshPC CreateSpherePC(float radius = 1.0f, uint32_t horizontalCount = 32, uint32_t verticalCount = 32);
 	static MeshPN CreateSpherePN(float radius = 1.0f, uint32_t horizontalCount = 32, uint32_t verticalCount = 32);

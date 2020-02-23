@@ -16,13 +16,15 @@ public:
 
 private:
 	Camera mCamera;
-	Mesh mMesh;
+	Mesh mTankMesh;
+	MeshBuffer mTankMeshBuffer;
+	Mesh mPlaneMesh;
+	MeshBuffer mPlaneMeshBuffer;
 
 	TextureId diffuseMap;
 	TextureId specularMap;
 	TextureId normalMap;
 
-	MeshBuffer mMeshBuffer;
 	VertexShader mVertexShader;
 	PixelShader mPixelShader;
 

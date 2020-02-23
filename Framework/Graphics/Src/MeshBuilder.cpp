@@ -344,6 +344,42 @@ MeshPX MeshBuilder::CreatePlanePX(float width, float height, uint32_t columns, u
 	return mesh;
 }
 
+Mesh Coo::Graphics::MeshBuilder::CreatePlane(float width, float height, uint32_t columns, uint32_t rows)
+{
+	std::vector<Vertex> vertices;
+	std::vector<uint32_t> indices;
+
+	float widthOffset = columns * width * 0.5f;
+	float heightOffset = rows * height * 0.5f;
+
+	for (uint32_t i = 0; i < rows; ++i)
+	{
+		for (uint32_t j = 0; j < columns; ++j)
+		{
+			// Set vertices
+			float iniX = -(j * width) - widthOffset;
+			float iniY = -(i * height) + heightOffset;
+			vertices.push_back({ {iniX,iniY, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(), {0.0f,0.0f} });
+			vertices.push_back({ {iniX + width,iniY, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,0.0f} });
+			vertices.push_back({ {iniX + width,iniY - height, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,1.0f} });
+			vertices.push_back({ {iniX,iniY - height, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{0.0f,1.0f} });
+			// Set indices
+			int offset = (j * columns + i) * 4;
+			indices.push_back(0 + offset);
+			indices.push_back(1 + offset);
+			indices.push_back(2 + offset);
+			indices.push_back(0 + offset);
+			indices.push_back(2 + offset);
+			indices.push_back(3 + offset);
+		}
+	}
+
+	Mesh mesh;
+	mesh.vertices.insert(mesh.vertices.end(), std::begin(vertices), std::end(vertices));
+	mesh.indices.insert(mesh.indices.end(), std::begin(indices), std::end(indices));
+	return mesh;
+}
+
 Mesh MeshBuilder::CreateSphere(float radius, uint32_t hCount, uint32_t vCount)
 {
 	std::vector<Vertex> vertices;
@@ -827,7 +863,7 @@ BoneMesh MeshBuilder::CreateTentacle(uint32_t numBone, float radius, float heigh
 				tangent,
 				texcoord,
 				{boneIndices[0], boneIndices[1], boneIndices[2], boneIndices[3]},
-				{boneWeights[0], boneWeights[1], boneWeights[2], boneWeights[3]} 
+				{boneWeights[0], boneWeights[1], boneWeights[2], boneWeights[3]}
 				});
 
 			if (i == 0 && j != 0 && j != sides - 1)
