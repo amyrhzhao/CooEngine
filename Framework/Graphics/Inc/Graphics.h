@@ -31,6 +31,7 @@
 #include "MeshIO.h"
 #include "Model.h"
 #include "VertexType.h"
+#include "ObjLoader.h"
 
 // Renderer
 #include "Dui.h"
