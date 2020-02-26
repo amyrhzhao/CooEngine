@@ -5,6 +5,10 @@
 
 namespace Coo::Core::Meta
 {
+	class MetaArray;
+	class MetaPointer;
+	class MetaClass;
+
 	class MetaType
 	{
 	public:
@@ -36,6 +40,10 @@ namespace Coo::Core::Meta
 			ASSERT(mDestory, "no destroy callable for '%s'.", GetName());
 			return mDestory(data); 
 		}
+
+		const MetaArray* GetMetaArray() const;
+		const MetaClass* GetMetaClass() const;
+		const MetaPointer* GetMetaPointer() const;
 
 	private:
 		const std::string mName;

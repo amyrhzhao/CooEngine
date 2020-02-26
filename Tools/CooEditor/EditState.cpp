@@ -140,10 +140,14 @@ void EditState::Initialize()
 	{
 		mRenderTargets[i].Initialize(graphicsSystem->GetBackBufferWidth(), graphicsSystem->GetBackBufferHeight(), RenderTarget::Format::RGBA_U8);
 	}
+
+	mWorld.Initialize(10000);
+	mWorld.Create("../../Assets/Template/test.json", "TestObject");
 }
 
 void EditState::Terminate()
 {
+	mWorld.Terminate();
 	mOptionsBuffer.Terminate();
 	mMaterialBuffer.Terminate();
 	mLightBuffer.Terminate();
@@ -237,10 +241,10 @@ void EditState::DebugUI()
 	//ImGui::Begin("Scene");
 	//ImGui::Image(mRenderTargets[iteration % 2 ? 0: 1].GetShaderResourceView(), {1280.0f * 0.7f, 720.0f * 0.7f});
 	//ImGui::End();
-	ShowSettings();
 	DrawMenuBar();
 	ShowMainWindowWithDockSpace();
 	ShowSceneView();
+	ShowSettings();
 }
 
 void EditState::DrawMenuBar()
@@ -315,7 +319,8 @@ void EditState::ShowSceneView()
 
 void EditState::ShowSettings()
 {
-	ImGui::Begin("Setting", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	//ImGui::Begin("Setting", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	ImGui::Begin("Setting");
 	if (ImGui::CollapsingHeader("Light"))
 	{
 		bool directionChanged = false;

@@ -42,7 +42,8 @@ namespace Coo
 		}
 
 		//Component* AddComponent(const char* componentTypeName);
-
+		Component* AddComponent(const Core::Meta::MetaClass* metaClass);
+		
 		template <class T>
 		const T* GetComponent() const 
 		{

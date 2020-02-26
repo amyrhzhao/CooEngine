@@ -11,10 +11,13 @@
 #include "Component.h"
 #include "GameObject.h"
 #include "GameObjectFactory.h"
+#include "Service.h"
+#include "World.h"
 
 // Components
 #include "ColliderComponent.h"
 #include "TransformComponent.h"
+
 
 namespace Coo
 {

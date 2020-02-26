@@ -3,6 +3,7 @@
 
 #include "Coo/Inc/Coo.h"
 
+using namespace Coo;
 using namespace Coo::Graphics;
 
 class EditState : public Coo::AppState 
@@ -22,8 +23,6 @@ private:
 
 	void RenderScene();
 	void PostProcess(int iteration, int shader);
-
-	// TODO: Add fishbowl distortion for crt
 
 	Camera mCamera;
 	Mesh mMesh;
@@ -111,5 +110,7 @@ private:
 	TextureId mSpaceTexture;
 
 	RenderTarget mRenderTargets[2];
+
+	World mWorld;
 };
 #endif // !EDITSTATE_H

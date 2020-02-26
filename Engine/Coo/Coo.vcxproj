@@ -163,7 +163,8 @@
     <ClInclude Include="Inc\Coo.h" />
     <ClInclude Include="Inc\GameObject.h" />
     <ClInclude Include="Inc\GameObjectFactory.h" />
-    <ClInclude Include="Inc\MetaRegistration.h" />
+    <ClInclude Include="Src\MetaRegistration.h" />
+    <ClInclude Include="Inc\Service.h" />
     <ClInclude Include="Inc\TransformComponent.h" />
     <ClInclude Include="Inc\World.h" />
     <ClInclude Include="Src\Precompiled.h" />
@@ -182,6 +183,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Service.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
     <ClCompile Include="Src\World.cpp" />
   </ItemGroup>

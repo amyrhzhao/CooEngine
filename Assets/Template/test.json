@@ -1,0 +1,14 @@
+{
+  "GameObject":{
+    "Components":{
+      "Coo::TransformComponent":{
+        "Position":[0,1,1],
+        "Rotation":[1,2,1,0]
+      },
+      "Coo::ColliderComponent":{
+        "Center":[0,1,1],
+        "Extend":[1,2,1,0]
+      }
+    }
+  }
+}

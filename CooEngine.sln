@@ -37,6 +37,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "External\ImGui\ImGui.vcxproj", "{7BBB1E3B-7B8C-4D5C-A875-A8F8872C399A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{3317CDF2-1404-4F36-827E-533319669E84}"
+	ProjectSection(SolutionItems) = preProject
+		Engine\Coo\Inc\Service.h = Engine\Coo\Inc\Service.h
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostProcessing", "PostProcessing", "{DC450781-FB53-4CD1-9740-B30214D41A9A}"
 	ProjectSection(SolutionItems) = preProject

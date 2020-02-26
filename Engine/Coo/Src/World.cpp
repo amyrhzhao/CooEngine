@@ -7,6 +7,9 @@ void World::Initialize(size_t capacity)
 {
 	ASSERT(!mInitialized, "[World] World already initialized");
 
+	for (auto& service : mServices) 
+		service->Initialize();
+
 	mGameObjectAllocator = std::make_unique<GameObjectAllocator>(capacity);
 	mGameObjectHandlePool = std::make_unique<GameObjectHandlePool>(capacity);
 	mGameObjectFactory = std::make_unique<GameObjectFactory>(*mGameObjectAllocator);
@@ -35,6 +38,11 @@ void World::Terminate()
 	mGameObjectAllocator.reset();
 	mGameObjectHandlePool.reset();
 	mGameObjectFactory.reset();
+
+	for (auto& service : mServices)
+	{
+		service->Terminate();
+	}
 
 	mInitialized = false;
 }
@@ -87,6 +95,9 @@ void Coo::World::Destroy(GameObjectHandle handle)
 void World::Update(float deltaTime)
 {
 	ASSERT(!mUpdating, "[World] Already updating the world.");
+	
+	for (auto& service : mServices)
+		service->Update(deltaTime);
 
 	// Lock the update list
 	mUpdating = true;
@@ -111,12 +122,16 @@ void World::Update(float deltaTime)
 
 void World::Render()
 {
+	for (auto& service : mServices)
+		service->Render();
 	for (auto gameObject : mUpdateList)
 		gameObject->Render();
 }
 
 void World::DebugUI()
 {
+	for (auto& service : mServices)
+		service->DebugUI();
 	for (auto gameObject : mUpdateList)
 		gameObject->DebugUI();
 }
@@ -144,8 +159,7 @@ void Coo::World::DestroyInternal(GameObject* gameObject)
 void Coo::World::ProcessDestroyList()
 {
 	for (auto gameObject : mDestroyList) 
-	{
 		DestroyInternal(gameObject);
-	}
+
 	mDestroyList.clear();
 }

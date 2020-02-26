@@ -47,3 +47,11 @@ void GameObject::DebugUI()
 		component->DebugUI();
 	}
 }
+
+Component * Coo::GameObject::AddComponent(const Core::Meta::MetaClass * metaClass)
+{
+	Component* newComponent = static_cast<Component*>(metaClass->Create());
+	mComponents.emplace_back(std::unique_ptr<Component>(newComponent));
+	return newComponent;
+}
+
