@@ -359,10 +359,10 @@ Mesh Coo::Graphics::MeshBuilder::CreatePlane(float width, float height, uint32_t
 			// Set vertices
 			float iniX = -(j * width) - widthOffset;
 			float iniY = -(i * height) + heightOffset;
-			vertices.push_back({ {iniX,iniY, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(), {0.0f,0.0f} });
-			vertices.push_back({ {iniX + width,iniY, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,0.0f} });
-			vertices.push_back({ {iniX + width,iniY - height, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,1.0f} });
-			vertices.push_back({ {iniX,iniY - height, 0.0f},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{0.0f,1.0f} });
+			vertices.push_back({ {iniX, 0.0f,iniY},Math::Vector3::YAxis(),Math::Vector3::XAxis(), {0.0f,0.0f} });
+			vertices.push_back({ {iniX + width, 0.0f,iniY},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,0.0f} });
+			vertices.push_back({ {iniX + width, 0.0f,iniY - height},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{1.0f,1.0f} });
+			vertices.push_back({ {iniX, 0.0f,iniY - height},Math::Vector3::YAxis(),Math::Vector3::XAxis(),{0.0f,1.0f} });
 			// Set indices
 			int offset = (j * columns + i) * 4;
 			indices.push_back(0 + offset);

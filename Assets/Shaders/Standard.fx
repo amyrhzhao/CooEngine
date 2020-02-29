@@ -14,6 +14,7 @@ Texture2D diffuseMap : register(t0);
 Texture2D specularMap : register(t1);
 Texture2D displacementMap : register(t2);
 Texture2D normalMap : register(t3);
+Texture2D aoMap : register(t4);
 
 SamplerState textureSampler : register(s0);
 
@@ -65,6 +66,7 @@ VSOutput VS(VSInput input)
     float4 position = input.position + (float4(input.normal, 0) * displacement * options.x);
 
     float3 normal = mul(input.normal, (float3x3) World);
+	
     float3 tangent = mul(input.tangent, (float3x3) World);
     float3 binormal = cross(normal, tangent);
 
@@ -93,16 +95,18 @@ float4 PS(VSOutput input) : SV_Target
 	float3 dirToLight = normalize(input.dirToLight);
     float3 dirToView = normalize(input.dirToView);
 
-    float4 ambient = LightAmbient * MaterialAmbient;
-    
+	float4 ambient = LightAmbient * MaterialAmbient ;
+	float4 ao = aoMap.Sample(textureSampler, input.texCoord) * options.z;
+	
     float d = saturate(dot(dirToLight, normal));
     float4 diffuse = d * LightDiffuse * MaterialDiffuse;
 
     float3 r = reflect(LightDirection.xyz, normal);
     float s = saturate(dot(dirToView, r));
     float4 specular = pow(s, MaterialPower.x) * LightSpecular * MaterialSpecular;
-
+	
     float4 textureColor = diffuseMap.Sample(textureSampler, input.texCoord);
     float4 textureSpecular = specularMap.Sample(textureSampler, input.texCoord);
-    return ((ambient + diffuse) * textureColor) + (specular * textureSpecular.x);
+	return ((ambient + diffuse + ao) * textureColor) + (specular * textureSpecular.x);
+	//return (aoMap.Sample(textureSampler, input.texCoord) * options.z);
 }

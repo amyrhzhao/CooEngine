@@ -3,6 +3,52 @@
 
 using namespace Coo;
 using namespace Coo::Graphics;
+using namespace Coo::Math;
+
+namespace
+{
+	// https://www.marti.works/calculating-tangents-for-your-mesh/
+
+	void CalculateTangent(Vertex& v0, const Vector3& bitangent)
+	{
+		Vector3 t = v0.tangent - (v0.normal * Dot(v0.normal, v0.tangent));
+		t = Normalize(t);
+
+		Vector3 c = Cross(v0.normal, v0.tangent);
+		float w = (Dot(c, bitangent) < 0.0f) ? -1.0f : 1.0f;
+		v0.tangent = t;
+	}
+
+	void CalculateTangent(Vertex& v0, Vertex& v1, Vertex& v2)
+	{
+		Vector3 edge1 = v1.position - v0.position;
+		Vector3 edge2 = v2.position - v0.position;
+		Vector2 uv1 = v1.texcoord - v0.texcoord;
+		Vector2 uv2 = v2.texcoord - v0.texcoord;
+		float r = 1.0f / (uv1.x * uv2.y - uv1.y * uv2.x);
+		Vector3 tangent = 
+		{
+			((edge1.x * uv2.y) - (edge2.x * uv1.y)) * r,
+			((edge1.y * uv2.y) - (edge2.y * uv1.y)) * r,
+			((edge1.z * uv2.y) - (edge2.z * uv1.y)) * r
+		};
+		Vector3 bitangent(
+			((edge1.x * uv2.x) - (edge2.x * uv1.x)) * r,
+			((edge1.y * uv2.x) - (edge2.y * uv1.x)) * r,
+			((edge1.z * uv2.x) - (edge2.z * uv1.x)) * r
+		);
+		v0.tangent += tangent;
+		v1.tangent += tangent;
+		v2.tangent += tangent;
+		CalculateTangent(v0, bitangent);
+		CalculateTangent(v1, bitangent);
+		CalculateTangent(v2, bitangent);
+		return;
+	}
+	
+
+}
+
 // Only support some Obj Files
 void Coo::Graphics::ObjLoader::Load(const std::filesystem::path& filePath, float scale, Mesh& mesh)
 {
@@ -102,6 +148,11 @@ void Coo::Graphics::ObjLoader::Load(const std::filesystem::path& filePath, float
 		vertex.normal = normals[normalIndices[i] - 1];
 		vertex.texcoord = uvs[uvIndices[i] - 1];
 		vertices.emplace_back(vertex);
+	}
+
+	for (size_t i = 0; i < vertices.size() / 3; ++i) 
+	{
+		CalculateTangent(vertices[i], vertices[i + 1], vertices[i + 2]);
 	}
 
 	std::vector<uint32_t> indices;

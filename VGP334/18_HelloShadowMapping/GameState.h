@@ -24,6 +24,7 @@ private:
 	TextureId diffuseMap;
 	TextureId specularMap;
 	TextureId normalMap;
+	TextureId aoMap;
 
 	VertexShader mVertexShader;
 	PixelShader mPixelShader;
@@ -40,7 +41,8 @@ private:
 	{
 		float displacementWeight;
 		float useNormal = 1.0f;
-		float padding[2];
+		float aoPower = 1.0f;
+		float padding;
 	};
 
 	using TransformBuffer = TypedConstantBuffer<TransformData>;
@@ -60,6 +62,9 @@ private:
 	Material mMaterial;
 	OptionsData mOptions;
 	Coo::Math::Vector3 mPosition;
+
+	void RenderTank();
+	void RenderPlane();
 };
 
 #endif // !INCLUDED_HELLOMODEL_GAMESTATE_H
