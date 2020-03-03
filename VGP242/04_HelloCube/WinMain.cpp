@@ -155,7 +155,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		Matrix4 matrix[3];
 		matrix[0] = Coo::Math::Transpose(matRotX*matRotY*matRotZ);
 		matrix[1] = Coo::Math::Transpose(camera.GetViewMatrix());
-		matrix[2] = Coo::Math::Transpose(camera.GetPerspectiveMatrix(1280.0f / 720.0f));
+		matrix[2] = Coo::Math::Transpose(camera.GetPerspectiveMatrix());
 
 		GraphicsSystem::Get()->BeginRender();
 		vertexShader.Bind();
