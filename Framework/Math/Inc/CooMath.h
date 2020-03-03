@@ -2,9 +2,6 @@
 #ifndef INCLUDED_COOENGINE_COOMATH_H
 #define INCLUDED_COOENGINE_COOMATH_H
 
-#pragma warning(disable : 4201)
-#pragma warning(disable : 4458)
-
 #include "Common.h"
 
 #include "Circle.h"
@@ -17,9 +14,6 @@
 #include "Quaternion.h"
 
 #include "MetaRegistration.h"
-
-#pragma warning(default : 4201)
-#pragma warning(default : 4458)
 
 namespace Coo::Math {
 

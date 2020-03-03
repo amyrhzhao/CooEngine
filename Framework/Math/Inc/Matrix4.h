@@ -1,6 +1,7 @@
 #ifndef INCLUDED_COOENGINE_MATH_MATRIX4_H
 #define INCLUDED_COOENGINE_MATH_MATRIX4_H
 
+#pragma warning(disable : 4201)
 namespace Coo::Math {
 
 	struct Matrix4

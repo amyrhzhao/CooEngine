@@ -1,6 +1,7 @@
 #ifndef INCLUDED_COOENGINE_MATH_VECTOR2_H
 #define INCLUDED_COOENGINE_MATH_VECTOR2_H
 
+#pragma warning(disable : 4201)
 namespace Coo::Math {
 
 struct Vector2
@@ -16,13 +17,13 @@ struct Vector2
 	constexpr Vector2(float x, float y) noexcept : x{ x }, y{ y } {}
 
 	constexpr Vector2 operator-() const						{ return { -x, -y }; }
-	constexpr Vector2 operator+(const Vector2& v) const		{ return { x + v.x, y + v.y }; }
-	constexpr Vector2 operator-(const Vector2& v) const		{ return { x - v.x, y - v.y }; }
+	constexpr Vector2 operator+(const Vector2& vec) const		{ return { x + vec.x, y + vec.y }; }
+	constexpr Vector2 operator-(const Vector2& vec) const		{ return { x - vec.x, y - vec.y }; }
 	constexpr Vector2 operator*(float s) const				{ return { x * s, y * s }; }
 	constexpr Vector2 operator/(float s) const				{ return { x / s, y / s }; }
 	
-	constexpr Vector2& operator+=(const Vector2& v)		{ x += v.x; y += v.y; return *this; }
-	constexpr Vector2& operator-=(const Vector2& v)		{ x -= v.x; y -= v.y; return *this; }
+	constexpr Vector2& operator+=(const Vector2& vec)		{ x += vec.x; y += vec.y; return *this; }
+	constexpr Vector2& operator-=(const Vector2& vec)		{ x -= vec.x; y -= vec.y; return *this; }
 	constexpr Vector2& operator*= (float s)				{ x *= s; y *= s; return *this; }
 	constexpr Vector2& operator/= (float s)				{ x /= s; y /= s; return *this; }
 

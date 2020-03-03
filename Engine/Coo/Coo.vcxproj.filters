@@ -19,12 +19,6 @@
     <Filter Include="Src\Components">
       <UniqueIdentifier>{4428c825-2b63-4b4a-8a02-37ea462e9ff6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inc\Services">
-      <UniqueIdentifier>{ff92c082-e5ad-4207-8730-c75524a3d7f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Services">
-      <UniqueIdentifier>{0556893b-fa3e-41d5-b1b0-deacbbe0f067}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Inc\World">
       <UniqueIdentifier>{bf6d8363-c377-4891-b8e7-45f9a328979e}</UniqueIdentifier>
     </Filter>
@@ -69,11 +63,11 @@
     <ClInclude Include="Inc\World.h">
       <Filter>Inc\World</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Service.h">
-      <Filter>Inc\World</Filter>
-    </ClInclude>
     <ClInclude Include="Src\MetaRegistration.h">
       <Filter>Src\Meta</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Service.h">
+      <Filter>Inc\World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

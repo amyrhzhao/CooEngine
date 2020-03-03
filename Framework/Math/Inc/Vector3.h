@@ -15,14 +15,14 @@ struct Vector3
 	constexpr explicit Vector3(float f) noexcept : x{ f }, y{ f }, z{ f } {}
 	constexpr Vector3(float x, float y, float z) noexcept : x{ x }, y{ y }, z{ z } {}
 
-	constexpr Vector3 operator-() const					{ return { -x, -y, -z }; }
-	constexpr Vector3 operator+(const Vector3& v) const	{ return { x + v.x, y + v.y, z + v.z }; }
-	constexpr Vector3 operator-(const Vector3& v) const	{ return { x - v.x, y - v.y, z - v.z }; }
-	constexpr Vector3 operator*(float s) const			{ return { x * s, y * s, z * s }; }
-	constexpr Vector3 operator/(float s) const			{ return { x / s, y / s, z / s }; }
+	constexpr Vector3 operator-() const						{ return { -x, -y, -z }; }
+	constexpr Vector3 operator+(const Vector3& vec) const	{ return { x + vec.x, y + vec.y, z + vec.z }; }
+	constexpr Vector3 operator-(const Vector3& vec) const	{ return { x - vec.x, y - vec.y, z - vec.z }; }
+	constexpr Vector3 operator*(float s) const				{ return { x * s, y * s, z * s }; }
+	constexpr Vector3 operator/(float s) const				{ return { x / s, y / s, z / s }; }
 	
-	constexpr Vector3& operator+=(const Vector3& v)		{ x += v.x; y += v.y; z += v.z; return *this; }
-	constexpr Vector3& operator-=(const Vector3& v)		{ x -= v.x; y -= v.y; z -= v.z; return *this; }
+	constexpr Vector3& operator+=(const Vector3& vec)	{ x += vec.x; y += vec.y; z += vec.z; return *this; }
+	constexpr Vector3& operator-=(const Vector3& vec)	{ x -= vec.x; y -= vec.y; z -= vec.z; return *this; }
 	constexpr Vector3& operator*=(float s)				{ x *= s; y *= s; z *= s; return *this; }
 	constexpr Vector3& operator/=(float s)				{ x /= s; y /= s; z /= s; return *this; }
 	

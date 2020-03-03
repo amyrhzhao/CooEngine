@@ -9,14 +9,15 @@ namespace
 {
 	// https://www.marti.works/calculating-tangents-for-your-mesh/
 
-	void CalculateTangent(Vertex& v0, const Vector3& bitangent)
+	void CalculateTangent(Vertex& v0/*, const Vector3& bitangent*/)
 	{
 		Vector3 t = v0.tangent - (v0.normal * Dot(v0.normal, v0.tangent));
 		t = Normalize(t);
 
-		Vector3 c = Cross(v0.normal, v0.tangent);
-		float w = (Dot(c, bitangent) < 0.0f) ? -1.0f : 1.0f;
+		//Vector3 c = Cross(v0.normal, v0.tangent);
+		//float w = (Dot(c, bitangent) < 0.0f) ? -1.0f : 1.0f;
 		v0.tangent = t;
+		
 	}
 
 	void CalculateTangent(Vertex& v0, Vertex& v1, Vertex& v2)
@@ -32,17 +33,17 @@ namespace
 			((edge1.y * uv2.y) - (edge2.y * uv1.y)) * r,
 			((edge1.z * uv2.y) - (edge2.z * uv1.y)) * r
 		};
-		Vector3 bitangent(
+		/*Vector3 bitangent(
 			((edge1.x * uv2.x) - (edge2.x * uv1.x)) * r,
 			((edge1.y * uv2.x) - (edge2.y * uv1.x)) * r,
 			((edge1.z * uv2.x) - (edge2.z * uv1.x)) * r
-		);
+		);*/
 		v0.tangent += tangent;
 		v1.tangent += tangent;
 		v2.tangent += tangent;
-		CalculateTangent(v0, bitangent);
-		CalculateTangent(v1, bitangent);
-		CalculateTangent(v2, bitangent);
+		CalculateTangent(v0);//, bitangent);
+		CalculateTangent(v1);//, bitangent);
+		CalculateTangent(v2);//, bitangent);
 		return;
 	}
 	
@@ -132,7 +133,9 @@ void Coo::Graphics::ObjLoader::Load(const std::filesystem::path& filePath, float
 			}
 			else
 			{
-				ASSERT(false, "[ObjLoader] Unsupported OBJ format. File: %s", filePath.u8string().c_str());
+#pragma warning( disable : 4456)
+				ASSERT(false, "[ObjLoader] Unsupported OBJ format. File: %s.", filePath.u8string().c_str());
+#pragma warning( default : 4456)
 			}
 		}
 	}
