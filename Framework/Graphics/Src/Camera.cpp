@@ -90,8 +90,9 @@ Math::Matrix4 Camera::GetViewMatrix() const
 	return ComputeViewMatrix(r, u, l, mPosition);
 }
 
-Math::Matrix4 Camera::GetPerspectiveMatrix(float aspectRatio) const
+Math::Matrix4 Camera::GetPerspectiveMatrix() const
 {
+	float aspectRatio = mAspectRatio;
 	if(aspectRatio == 0.0f)
 	{
 		auto width = GraphicsSystem::Get()->GetBackBufferWidth();

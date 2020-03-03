@@ -18,6 +18,7 @@ public:
 	void SetPosition(const Math::Vector3& position);
 	void SetDirection(const Math::Vector3& direction);
 	void SetLookAt(const Math::Vector3& target);
+	void SetAspectRatio(float aspectRatio) { mAspectRatio = aspectRatio; }
 
 	// 3 degrees of freedom for translations
 	void Walk(float distance);
@@ -39,7 +40,7 @@ public:
 	float GetFarPlane() const { return mFarPlane; }
 
 	Math::Matrix4 GetViewMatrix() const;
-	Math::Matrix4 GetPerspectiveMatrix(float aspectRadio = 0.0f) const;
+	Math::Matrix4 GetPerspectiveMatrix() const;
 
 private:
 	Math::Vector3 mPosition{ 0.0f };
@@ -48,7 +49,7 @@ private:
 	float mFov{ 60.0f * Math::DegToRad };
 	float mNearPlane{ 1.0f };
 	float mFarPlane{ 1000.0f };
-
+	float mAspectRatio = 0.0f;
 };
 
 } // namespace Coo::Graphics

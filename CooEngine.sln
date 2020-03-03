@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{CA5548
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{8ADFFCEA-E814-46A9-A4B2-EA83833405AA}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Shaders\DepthMap.fx = Assets\Shaders\DepthMap.fx
 		Assets\Shaders\DoLighting.fx = Assets\Shaders\DoLighting.fx
 		Assets\Shaders\DoNothing.fx = Assets\Shaders\DoNothing.fx
 		Assets\Shaders\DoSomething.fx = Assets\Shaders\DoSomething.fx
