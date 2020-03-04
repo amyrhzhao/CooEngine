@@ -66,7 +66,7 @@ void Coo::Core::Meta::MetaClass::Deserialize(void* instance, const rapidjson::Va
 		auto metaType = metaField->GetMetaType();
 
 		void* instanceField = static_cast<uint8_t*>(instance) + metaField->GetOffset();
-		metaType->Deserialize(instance, member.value);
+		metaType->Deserialize(instanceField, member.value);
 
 	}
 }
