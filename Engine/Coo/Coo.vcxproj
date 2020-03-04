@@ -161,6 +161,7 @@
     <ClInclude Include="Inc\Common.h" />
     <ClInclude Include="Inc\Component.h" />
     <ClInclude Include="Inc\Coo.h" />
+    <ClInclude Include="Inc\Editor.h" />
     <ClInclude Include="Inc\GameObject.h" />
     <ClInclude Include="Inc\GameObjectFactory.h" />
     <ClInclude Include="Src\MetaRegistration.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Src\ColliderComponent.cpp" />
     <ClCompile Include="Src\Component.cpp" />
     <ClCompile Include="Src\Coo.cpp" />
+    <ClCompile Include="Src\Editor.cpp" />
     <ClCompile Include="Src\GameObject.cpp" />
     <ClCompile Include="Src\GameObjectFactory.cpp" />
     <ClCompile Include="Src\MetaRegistration.cpp" />

@@ -18,7 +18,9 @@
 		static const Coo::Core::Meta::MetaType sMetaType(\
 			#Name, Coo::Core::Meta::MetaType::Category::Primitive, sizeof(Type),\
 			[] (void) {return new Type;},\
-			[] (void* data) {delete static_cast<Type*>(data);});\
+			[] (void* data) {delete static_cast<Type*>(data);},\
+			nullptr,\
+			Coo::Core::Meta::Deserialize<Type>);\
 		return &sMetaType;\
 	}
 

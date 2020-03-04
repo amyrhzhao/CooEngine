@@ -53,6 +53,24 @@ const size_t Coo::Core::Meta::MetaClass::GetFieldsCount() const
 	return mFields.size() + GetParentFieldsCount();
 }
 
+void Coo::Core::Meta::MetaClass::Serialize(const void * instance, rapidjson::Value & jsonValue) const
+{
+	// TODO
+}
+
+void Coo::Core::Meta::MetaClass::Deserialize(void* instance, const rapidjson::Value & jsonValue) const
+{
+	for (auto& member : jsonValue.GetObjectW())
+	{
+		auto metaField = FindField(member.name.GetString());
+		auto metaType = metaField->GetMetaType();
+
+		void* instanceField = static_cast<uint8_t*>(instance) + metaField->GetOffset();
+		metaType->Deserialize(instance, member.value);
+
+	}
+}
+
 const size_t Coo::Core::Meta::MetaClass::GetParentFieldsCount() const
 {
 	return mParent ? mParent->GetFieldsCount() : 0u;

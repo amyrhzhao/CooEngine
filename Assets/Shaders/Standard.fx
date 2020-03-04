@@ -106,7 +106,7 @@ float4 PS(VSOutput input) : SV_Target
 	float3 t = normalize(input.tangent);
 	float3x3 tbnw = float3x3(t, b, n);
 
-	float3 normal = normalize(mul(sampledNormal, tbnw)) * useNormal + n * (1 - useNormal);
+	float3 normal = normalize(mul(sampledNormal, tbnw)) * useNormal + n * (1.0f - useNormal);
 	float3 dirToLight = normalize(input.dirToLight);
 	float3 dirToView = normalize(input.dirToView);
 

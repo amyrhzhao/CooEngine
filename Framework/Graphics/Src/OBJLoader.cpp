@@ -153,10 +153,10 @@ void Coo::Graphics::ObjLoader::Load(const std::filesystem::path& filePath, float
 		vertices.emplace_back(vertex);
 	}
 
-	for (size_t i = 0; i < vertices.size() / 3; ++i) 
-	{
-		CalculateTangent(vertices[i], vertices[i + 1], vertices[i + 2]);
-	}
+	//for (size_t i = 0; i < vertices.size() / 3; ++i) 
+	//{
+	//	CalculateTangent(vertices[i], vertices[i + 1], vertices[i + 2]);
+	//}
 
 	std::vector<uint32_t> indices;
 	indices.resize(vertices.size());

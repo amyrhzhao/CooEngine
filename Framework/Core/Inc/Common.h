@@ -29,6 +29,11 @@
 #include <vector>
 #include <variant>
 
+// External headers
+#include <RapidJSON/document.h>
+#include <RapidJSON/filereadstream.h>
+#include <RapidJSON/filewritestream.h>
+
 // Utility functions to release DirectX interfaces
 template <class T>
 inline void SafeRelease(T*& ptr)

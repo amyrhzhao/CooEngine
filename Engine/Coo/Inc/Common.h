@@ -10,7 +10,4 @@
 #include <Physics/Inc/Physics.h>
 #include <Network/Inc/Network.h>
 
-// External headers
-#include <ImGui/Inc/imgui.h>
-
 #endif // !INCLUDED_COO_COMMON_H

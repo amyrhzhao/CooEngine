@@ -112,6 +112,7 @@ void GameState::Update(float deltaTime)
 	if (inputSystem->IsKeyDown(KeyCode::RIGHT))
 		mTankRotation.y -= deltaTime;
 
+	mLightCamera.SetDirection(mLight.direction);
 	mLightCamera.SetPosition(mTankPosition - mLightCamera.GetDirection() * 50.0f);
 }
 

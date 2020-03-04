@@ -24,6 +24,9 @@ namespace Coo::Core::Meta
 		const MetaField* GetField(size_t index) const;
 		const size_t GetFieldsCount() const;
 
+		void Serialize(const void* instance, rapidjson::Value& jsonValue) const override;
+		void Deserialize(void* instance, const rapidjson::Value& jsonValue) const override;
+
 	private:
 		const size_t GetParentFieldsCount() const;
 

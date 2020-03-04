@@ -8,10 +8,10 @@ namespace Coo
 	class ColliderComponent : public Component
 	{
 	public:
-		META_CLASS_DECLARE
+		META_CLASS_DECLARE;
 
-		void Initialize();
-		void Render();
+		void Initialize() override;
+		void Render() override;
 
 		Math::Vector3 center;
 		Math::Vector3 extend;

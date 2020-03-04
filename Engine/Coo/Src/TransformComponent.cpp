@@ -9,3 +9,12 @@ META_DERIVED_BEGIN(Coo::TransformComponent, Coo::Component)
 	META_FIELD(rotation, "Rotation")
 	META_FIELD_END
 META_CLASS_END
+
+void Coo::TransformComponent::Initialize()
+{
+}
+
+void Coo::TransformComponent::Render()
+{
+
+}

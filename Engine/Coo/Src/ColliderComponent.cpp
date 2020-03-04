@@ -10,13 +10,11 @@ META_DERIVED_BEGIN(Coo::ColliderComponent, Coo::Component)
 	META_FIELD_END
 META_CLASS_END
 
-
-void ColliderComponent::Initialize()
+void Coo::ColliderComponent::Initialize()
 {
-
 }
 
-void ColliderComponent::Render()
+void Coo::ColliderComponent::Render()
 {
 	
 }

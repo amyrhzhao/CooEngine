@@ -10,6 +10,9 @@ namespace Coo
 	public:
 		META_CLASS_DECLARE;
 
+		void Initialize() override;
+		void Render() override;
+
 		Math::Vector3 position;
 		Math::Quaternion rotation;
 	};

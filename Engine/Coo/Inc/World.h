@@ -48,6 +48,7 @@ namespace Coo
 		void DebugUI();
 
 	private:
+		friend class Editor;
 		void DestroyInternal(GameObject* gameObject);
 		void ProcessDestroyList();
 
@@ -64,6 +65,7 @@ namespace Coo
 		GameObjectList mDestroyList;
 		bool mInitialized = false;
 		bool mUpdating = false;
+
 	};
 }
 

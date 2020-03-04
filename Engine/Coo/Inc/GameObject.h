@@ -64,6 +64,7 @@ namespace Coo
 
 	private:
 		friend class World;
+		friend class Editor;
 		using Components = std::vector<std::unique_ptr<Component>>;
 
 		std::string mName = "NoName";

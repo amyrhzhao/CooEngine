@@ -17,4 +17,7 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxguid.lib")
 
+// External headers
+#include <ImGui/Inc/imgui.h>
+
 #endif // !INCLUDED_COOENGINE_GRAPHICS_COMMON_H
