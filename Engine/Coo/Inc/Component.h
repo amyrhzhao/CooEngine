@@ -23,7 +23,7 @@ namespace Coo
 		GameObject& GetOwner() { return *mOwner; }
 		const GameObject& GetOwner() const { return *mOwner; }
 
-	private:
+	protected:
 		friend class GameObject;
 		GameObject* mOwner = nullptr;
 	};

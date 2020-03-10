@@ -36,6 +36,7 @@ void World::Terminate()
 	ProcessDestroyList();
 
 	mGameObjectAllocator.reset();
+	mGameObjectHandlePool->Flush();
 	mGameObjectHandlePool.reset();
 	mGameObjectFactory.reset();
 

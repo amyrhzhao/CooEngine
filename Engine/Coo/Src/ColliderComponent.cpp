@@ -1,6 +1,7 @@
 #include "Precompiled.h"
 #include "ColliderComponent.h"
-
+#include "TransformComponent.h"
+#include "GameObject.h"
 using namespace Coo;
 
 META_DERIVED_BEGIN(Coo::ColliderComponent, Coo::Component)
@@ -16,5 +17,9 @@ void Coo::ColliderComponent::Initialize()
 
 void Coo::ColliderComponent::Render()
 {
-	
+	auto transform = mOwner->GetComponent<Coo::TransformComponent>();
+	if (transform) 
+	{
+		Graphics::SimpleDraw::AddAABB(transform->position + center, extend, Graphics::Colors::Cyan);
+	}
 }

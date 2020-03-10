@@ -12,6 +12,7 @@ META_CLASS_END
 
 void Coo::TransformComponent::Initialize()
 {
+	
 }
 
 void Coo::TransformComponent::Render()

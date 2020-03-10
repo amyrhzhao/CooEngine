@@ -36,15 +36,6 @@ private:
 	PixelShader mPixelShader;
 	VertexShader mSpaceVertexShader;
 	PixelShader mSpacePixelShader;
-	VertexShader mPostProcessingVertexShader;
-	PixelShader mPostProcessingPixelShader;
-	VertexShader mCrtEffectVertexShader;
-	PixelShader mCrtEffectPixelShader;
-	VertexShader mBlurEffectVertexShader;
-	PixelShader mBlurEffectPixelShader;
-	VertexShader mFragmentVertexShader;
-	PixelShader mFragmentPixelShader;
-
 
 	bool applyPixel = true;
 	bool applyCrt = true;
@@ -112,5 +103,6 @@ private:
 	RenderTarget mRenderTargets[2];
 
 	World mWorld;
+	Editor mEditor = Editor(mWorld);
 };
 #endif // !EDITSTATE_H

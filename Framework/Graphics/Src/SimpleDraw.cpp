@@ -315,6 +315,11 @@ void Coo::Graphics::SimpleDraw::AddAABB(const Math::Vector3 & pos, float radius,
 	sSimpleDrawImpl->AddAABB(pos.x - radius, pos.x + radius, pos.y - radius, pos.y + radius, pos.z - radius, pos.z + radius, color);
 }
 
+void Coo::Graphics::SimpleDraw::AddAABB(const Math::Vector3 & pos, const Math::Vector3 & extend, const Color & color)
+{
+	sSimpleDrawImpl->AddAABB(pos.x - extend.x, pos.x + extend.x, pos.y - extend.y, pos.y + extend.y, pos.z - extend.z, pos.z + extend.z, color);
+}
+
 void SimpleDraw::AddScreenLine(const Math::Vector2& v0, const Math::Vector2& v1, const Color& color)
 {
 	sSimpleDrawImpl->AddScreenLine(v0, v1, color);

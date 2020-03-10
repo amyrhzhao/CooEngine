@@ -91,22 +91,6 @@ void EditState::Initialize()
 	mSpaceVertexShader.Initialize(L"../../Assets/Shaders/Texturing.fx", VertexPX::Format);
 	mSpacePixelShader.Initialize(L"../../Assets/Shaders/Texturing.fx");
 
-	/// Post processing effect( negative, grey scale, pixel)
-	mPostProcessingVertexShader.Initialize(L"../../Assets/Shaders/PostProcessing.fx", VertexPX::Format);
-	mPostProcessingPixelShader.Initialize(L"../../Assets/Shaders/PostProcessing.fx");
-
-	/// Crt effect(scan line)
-	mCrtEffectVertexShader.Initialize(L"../../Assets/Shaders/CrtEffect.fx", VertexPX::Format);
-	mCrtEffectPixelShader.Initialize(L"../../Assets/Shaders/CrtEffect.fx");
-
-	/// Blur effect
-	mBlurEffectVertexShader.Initialize(L"../../Assets/Shaders/BlurEffect.fx", VertexPX::Format);
-	mBlurEffectPixelShader.Initialize(L"../../Assets/Shaders/BlurEffect.fx");
-
-	/// Brightness and Contrast
-	mFragmentVertexShader.Initialize(L"../../Assets/Shaders/Fragment.fx", VertexPX::Format);
-	mFragmentPixelShader.Initialize(L"../../Assets/Shaders/Fragment.fx");
-
 	auto tm = Coo::Graphics::TextureManager::Get();
 	mDiffuseMap = tm->LoadTexture("EarthTexture.jpg");
 	//mDiffuseMap = tm->LoadTexture("earth.jpg");
@@ -154,14 +138,6 @@ void EditState::Terminate()
 	mTransformBuffer.Terminate();
 	mPixelShader.Terminate();
 	mVertexShader.Terminate();
-	mPostProcessingVertexShader.Terminate();
-	mPostProcessingPixelShader.Terminate();
-	mCrtEffectVertexShader.Terminate();
-	mCrtEffectPixelShader.Terminate();
-	mBlurEffectVertexShader.Terminate();
-	mBlurEffectPixelShader.Terminate();
-	mFragmentVertexShader.Terminate();
-	mFragmentPixelShader.Terminate();
 	mFragmentConstantBuffer.Terminate();
 	mMeshBuffer.Terminate();
 	mSpaceMeshBuffer.Terminate();
@@ -197,41 +173,10 @@ void EditState::Render()
 
 	mRenderTargets[iteration].BeginRender();
 	RenderScene();
+	mWorld.Render();
+	SimpleDraw::Render(mCamera);
 	mRenderTargets[iteration].EndRender();
 	iteration = (iteration + 1) % 2;
-
-	if (applyPixel)
-	{
-		mRenderTargets[iteration].BeginRender();
-		PostProcess(iteration, 1);
-		mRenderTargets[iteration].EndRender();
-		iteration = (iteration + 1) % 2;
-	}
-
-	if (applyBlur)
-	{
-		for (int i = 0; i < blurPower; ++i)
-		{
-			mRenderTargets[iteration].BeginRender();
-			PostProcess(iteration, 3);
-			mRenderTargets[iteration].EndRender();
-			iteration = (iteration + 1) % 2;
-
-			mRenderTargets[iteration].BeginRender();
-			PostProcess(iteration, 4);
-			mRenderTargets[iteration].EndRender();
-			iteration = (iteration + 1) % 2;
-		}
-
-	}
-
-	if (applyCrt)
-	{
-		mRenderTargets[iteration].BeginRender();
-		PostProcess(iteration, 2);
-		mRenderTargets[iteration].EndRender();
-		iteration = (iteration + 1) % 2;
-	}
 
 	PostProcess(iteration, 0);
 }
@@ -244,7 +189,9 @@ void EditState::DebugUI()
 	DrawMenuBar();
 	ShowMainWindowWithDockSpace();
 	ShowSceneView();
-	ShowSettings();
+	mEditor.ShowHierarchyView();
+	mEditor.ShowInspectorView();
+	//ShowSettings();
 }
 
 void EditState::DrawMenuBar()
@@ -422,40 +369,6 @@ void EditState::RenderScene()
 
 void EditState::PostProcess(int iteration, int shader)
 {
-	if (shader == 1)
-	{
-		mPostProcessingVertexShader.Bind();
-		mPostProcessingPixelShader.Bind();
-	}
-	else if (shader == 2)
-	{
-		mCrtEffectVertexShader.Bind();
-		mCrtEffectPixelShader.Bind();
-	}
-	else if (shader == 3)
-	{
-		mBlurData.blurDir = { 1.0f,0.0f };
-		mBlurConstantBuffer.Set(mBlurData);
-		mBlurConstantBuffer.BindPS(0);
-		mBlurEffectVertexShader.Bind();
-		mBlurEffectPixelShader.Bind();
-	}
-	else if (shader == 4)
-	{
-		mBlurData.blurDir = { 0.0f,1.0f };
-		mBlurConstantBuffer.Set(mBlurData);
-		mBlurConstantBuffer.BindPS(0);
-		mBlurEffectVertexShader.Bind();
-		mBlurEffectPixelShader.Bind();
-	}
-	else
-	{
-		mFragmentConstantBuffer.Set(mFragmentData);
-		mFragmentConstantBuffer.BindPS(0);
-		mFragmentVertexShader.Bind();
-		mFragmentPixelShader.Bind();
-	}
-
 	SamplerManager::Get()->GetSampler("PointWrap")->BindPS(0);
 
 	mRenderTargets[iteration % 2 ? 0 : 1].BindPS(0);

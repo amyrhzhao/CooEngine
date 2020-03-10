@@ -18,6 +18,8 @@
 #include "ColliderComponent.h"
 #include "TransformComponent.h"
 
+// Editors
+#include "Editor.h"
 
 namespace Coo
 {

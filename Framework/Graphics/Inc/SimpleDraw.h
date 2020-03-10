@@ -14,6 +14,7 @@ void AddLine(const Math::Vector3& v0, const Math::Vector3& v1, const Color& colo
 void AddSphere(const Math::Vector3& center, float radius, const Color& color, uint32_t hCount = 8, uint32_t vCount = 8);
 void AddAABB(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, const Color& color);
 void AddAABB(const Math::Vector3& pos, float radius, const Color& color);
+void AddAABB(const Math::Vector3& pos, const Math::Vector3& extend, const Color& color);
 void AddScreenLine(const Math::Vector2& v0, const Math::Vector2& v1, const Color& color);
 void AddScreenCircle(const Math::Vector2& center, float radius, const Color& color);
 void AddScreenRect(float minX, float maxX, float minY, float maxY, const Color& color);

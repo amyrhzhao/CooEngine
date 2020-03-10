@@ -4,6 +4,7 @@
 #include "World.h"
 
 using namespace Coo;
+using namespace Coo::Math;
 
 Coo::Editor::Editor(World& world) 
 	:mWorld(world)
@@ -44,9 +45,22 @@ void Coo::Editor::ShowInspectorView()
 	ImGui::Begin("Inspector");
 	if (mSelectedGameObject) 
 	{
-		for (auto& Component : mSelectedGameObject->mComponents) 
+		for (auto& component : mSelectedGameObject->mComponents) 
 		{
-
+			auto metaClass = component->GetMetaClass();
+			if (ImGui::CollapsingHeader(metaClass->GetName(), ImGuiTreeNodeFlags_DefaultOpen)) 
+			{
+				for (size_t i = 0; i < metaClass->GetFieldsCount(); ++i) 
+				{
+					auto metaField = metaClass->GetField(i);
+					if (metaField->GetMetaType() == Core::Meta::DeduceType<Vector3>()) 
+					{
+						float* data = (float*)((uint8_t*)component.get() + metaField->GetOffset());
+						ImGui::DragFloat3(metaField->GetName(), data);
+					}
+				}
+			}
 		}
 	}
+	ImGui::End();
 }
