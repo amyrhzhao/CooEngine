@@ -897,6 +897,27 @@ BoneMesh MeshBuilder::CreateTentacle(uint32_t numBone, float radius, float heigh
 	return mesh;
 }
 
+Math::AABB MeshBuilder::ComputeBound(const Mesh& mesh) 
+{
+	if (mesh.vertices.empty()) 
+	{
+		return Math::AABB();
+	}
 
+	Math::Vector3 min = mesh.vertices[0].position;
+	Math::Vector3 max = mesh.vertices[0].position;
+
+	for (auto& vertex : mesh.vertices)
+	{
+		min.x = Math::min(min.x, vertex.position.x);
+		min.y = Math::min(min.y, vertex.position.y);
+		min.z = Math::min(min.z, vertex.position.z);
+	
+		max.x = Math::max(max.x, vertex.position.x);
+		max.y = Math::max(max.y, vertex.position.y);
+		max.z = Math::max(max.z, vertex.position.z);
+	}
+	return Math::AABB::FromMinMax(min, max);
+}
 
 

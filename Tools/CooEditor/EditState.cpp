@@ -127,6 +127,7 @@ void EditState::Initialize()
 
 	mWorld.Initialize(10000);
 	mWorld.Create("../../Assets/Template/test.json", "TestObject");
+	mWorld.Create("../../Assets/Template/test.json", "TestObject1");
 }
 
 void EditState::Terminate()
@@ -170,6 +171,7 @@ void EditState::Update(float deltaTime)
 void EditState::Render()
 {
 	iteration = 0;
+	//mCamera.SetAspectRatio();
 
 	mRenderTargets[iteration].BeginRender();
 	RenderScene();
@@ -258,6 +260,7 @@ void EditState::ShowSceneView()
 	vMax.x += ImGui::GetWindowPos().x;
 	vMax.y += ImGui::GetWindowPos().y;
 
+	
 	ImGui::GetForegroundDrawList()->AddRect(vMin, vMax, IM_COL32(255, 255, 0, 255));
 	ImGui::Image(mRenderTargets[iteration % 2 ? 0 : 1].GetShaderResourceView(), { vMax.x - vMin.x, vMax.y - vMin.y });
 	ImGui::CaptureMouseFromApp(!ImGui::IsItemHovered());

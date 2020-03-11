@@ -56,7 +56,7 @@ void Coo::Editor::ShowInspectorView()
 					if (metaField->GetMetaType() == Core::Meta::DeduceType<Vector3>()) 
 					{
 						float* data = (float*)((uint8_t*)component.get() + metaField->GetOffset());
-						ImGui::DragFloat3(metaField->GetName(), data);
+						ImGui::DragFloat3(metaField->GetName(), data, 0.01f);
 					}
 				}
 			}

@@ -3,28 +3,27 @@
     "Components":{
       "Coo::TransformComponent":{
         "Position":{
-          "x":1,
-          "y":2,
-          "z":3
+          "x":0,
+          "y":0,
+          "z":0
         },
         "Rotation":{
-          "x":4,
-          "y":5,
-          "z":6,
-          "w":7
+          "x":0,
+          "y":0,
+          "z":0,
+          "w":1
         }
       },
       "Coo::ColliderComponent":{
         "Center":{
-          "x":8,
-          "y":9,
-          "z":10
+          "x":0,
+          "y":0,
+          "z":0
         },
         "Extend":{
-          "x":11,
-          "y":12,
-          "z":13,
-          "w":14
+          "x":1,
+          "y":1,
+          "z":1
         }
       }
     }

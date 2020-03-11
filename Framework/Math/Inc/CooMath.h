@@ -4,10 +4,12 @@
 
 #include "Common.h"
 
+#include "AABB.h"
 #include "Circle.h"
 #include "LineSegment.h"
 #include "Matrix3.h"
 #include "Matrix4.h"
+#include "Ray.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
@@ -47,6 +49,8 @@ namespace Coo::Math {
 	{
 		return t1 + ((t2 - t1) * t);
 	}
+	inline bool Compare(float a, float b, float epsilon = FLT_MIN) { return abs(a - b) <= epsilon; }
+	inline bool IsZero(float value) { return Compare(value, 0.0f); }
 
 	// Vector2
 	constexpr float Dot(const Vector2& v0, const Vector2& v1)
@@ -479,6 +483,10 @@ namespace Coo::Math {
 
 	// Intersection
 	bool Intersect(const Circle& c0, const Circle& c1);
+	bool Intersect(const AABB& aabb0, const AABB& aabb1);
+	bool Intersect(const Ray& ray, const AABB& aabb, float& distEntry, float& distExit);
+	bool Intersect(const Ray& ray, const Vector3& a, const Vector3& b, const Vector3& c, float& distance);
+	bool Intersect(const Vector3& point, const AABB& aabb);
 
 	// Random
 	int Random();

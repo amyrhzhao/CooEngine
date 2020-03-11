@@ -34,6 +34,9 @@
     <Filter Include="Src\Editor">
       <UniqueIdentifier>{b31ceaf0-5746-43e8-a7fd-293c439484bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Terrain">
+      <UniqueIdentifier>{891f5eec-5ee6-4ff9-adb8-54a07494cc1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -78,6 +81,12 @@
     <ClInclude Include="Inc\Editor.h">
       <Filter>Inc\Editor</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Terrain.h">
+      <Filter>Inc\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Quadtree.h">
+      <Filter>Inc\Terrain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -115,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Src\Editor.cpp">
       <Filter>Src\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Quadtree.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

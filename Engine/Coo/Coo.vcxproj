@@ -164,6 +164,8 @@
     <ClInclude Include="Inc\Editor.h" />
     <ClInclude Include="Inc\GameObject.h" />
     <ClInclude Include="Inc\GameObjectFactory.h" />
+    <ClInclude Include="Inc\Quadtree.h" />
+    <ClInclude Include="Inc\Terrain.h" />
     <ClInclude Include="Src\MetaRegistration.h" />
     <ClInclude Include="Inc\Service.h" />
     <ClInclude Include="Inc\TransformComponent.h" />
@@ -185,6 +187,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Quadtree.cpp" />
     <ClCompile Include="Src\Service.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
     <ClCompile Include="Src\World.cpp" />

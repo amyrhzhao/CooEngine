@@ -66,6 +66,7 @@
     <ClInclude Include="Inc\AABB.h">
       <Filter>Inc\Geometry3D</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Ray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CooMath.cpp">

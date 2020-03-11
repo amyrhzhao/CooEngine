@@ -27,6 +27,7 @@
     <ClInclude Include="Inc\Matrix4.h" />
     <ClInclude Include="Inc\MetaRegistration.h" />
     <ClInclude Include="Inc\Quaternion.h" />
+    <ClInclude Include="Inc\Ray.h" />
     <ClInclude Include="Inc\Vector2.h" />
     <ClInclude Include="Inc\Vector3.h" />
     <ClInclude Include="Inc\Vector4.h" />
