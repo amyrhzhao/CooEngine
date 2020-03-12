@@ -259,10 +259,12 @@ void EditState::ShowSceneView()
 	vMin.y += ImGui::GetWindowPos().y;
 	vMax.x += ImGui::GetWindowPos().x;
 	vMax.y += ImGui::GetWindowPos().y;
+	float x = vMax.x - vMin.x;
+	float y = vMax.y - vMin.y;
 
-	
 	ImGui::GetForegroundDrawList()->AddRect(vMin, vMax, IM_COL32(255, 255, 0, 255));
-	ImGui::Image(mRenderTargets[iteration % 2 ? 0 : 1].GetShaderResourceView(), { vMax.x - vMin.x, vMax.y - vMin.y });
+	ImGui::Image(mRenderTargets[iteration % 2 ? 0 : 1].GetShaderResourceView(), { x ,  y });
+	mCamera.SetAspectRatio(x / y);
 	ImGui::CaptureMouseFromApp(!ImGui::IsItemHovered());
 	ImGui::End();
 }
