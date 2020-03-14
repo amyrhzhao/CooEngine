@@ -114,6 +114,7 @@ void GameState::Update(float deltaTime)
 
 	mLightCamera.SetDirection(mLight.direction);
 	mLightCamera.SetPosition(mTankPosition - mLightCamera.GetDirection() * 50.0f);
+	SimpleDraw::AddSphere(mLightCamera.GetPosition(), 1.0f, Colors::Yellow);
 }
 
 void GameState::Render()
@@ -257,6 +258,8 @@ void GameState::DrawScene()
 	mOptionsBuffer.Set(options);
 
 	mPlaneMeshBuffer.Render();
+
+
 
 	SimpleDraw::Render(*mActiveCamera);
 }
