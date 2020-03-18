@@ -26,6 +26,7 @@
     <ClInclude Include="Inc\Matrix3.h" />
     <ClInclude Include="Inc\Matrix4.h" />
     <ClInclude Include="Inc\MetaRegistration.h" />
+    <ClInclude Include="Inc\PerlinNoise.h" />
     <ClInclude Include="Inc\Quaternion.h" />
     <ClInclude Include="Inc\Ray.h" />
     <ClInclude Include="Inc\Vector2.h" />
@@ -37,6 +38,7 @@
   <ItemGroup>
     <ClCompile Include="Src\CooMath.cpp" />
     <ClCompile Include="Src\MetaRegistration.cpp" />
+    <ClCompile Include="Src\PerlinNoise.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -189,6 +189,7 @@
     </ClCompile>
     <ClCompile Include="Src\Quadtree.cpp" />
     <ClCompile Include="Src\Service.cpp" />
+    <ClCompile Include="Src\Terrain.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
     <ClCompile Include="Src\World.cpp" />
   </ItemGroup>

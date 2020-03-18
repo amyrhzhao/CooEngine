@@ -37,6 +37,9 @@
     <Filter Include="Inc\Terrain">
       <UniqueIdentifier>{891f5eec-5ee6-4ff9-adb8-54a07494cc1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Terrain">
+      <UniqueIdentifier>{e09180b7-474a-4ebc-9101-91a646a20ea9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -126,7 +129,10 @@
       <Filter>Src\Editor</Filter>
     </ClCompile>
     <ClCompile Include="Src\Quadtree.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Terrain.cpp">
+      <Filter>Src\Terrain</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

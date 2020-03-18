@@ -69,6 +69,9 @@
     <ClInclude Include="Inc\Ray.h">
       <Filter>Inc\Geometry3D</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\PerlinNoise.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CooMath.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Src\MetaRegistration.cpp">
       <Filter>Src\Meta</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\PerlinNoise.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

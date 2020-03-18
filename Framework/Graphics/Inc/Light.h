@@ -17,10 +17,11 @@ struct PointLight
 struct DirectionalLight
 {
 	Math::Vector3 direction;
-	float padding;
+	float power;
 	Color ambient;
 	Color diffuse;
 	Color specular;
+	
 };
 
 }

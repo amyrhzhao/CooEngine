@@ -21,6 +21,10 @@
 // Editors
 #include "Editor.h"
 
+// Terrain
+#include "Terrain.h"
+#include "Quadtree.h"
+
 namespace Coo
 {
 	extern App sApp;

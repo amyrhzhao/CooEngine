@@ -1,7 +1,7 @@
 #ifndef INCLUDED_COOENGINE_QUADTREE_H
 #define INCLUDED_COOENGINE_QUADTREE_H
 
-#include <Coo/Inc/Coo.h>
+#include "Common.h"
 
 namespace Coo 
 {
@@ -14,6 +14,7 @@ namespace Coo
 			std::vector<size_t> indices;
 			Coo::Math::AABB aabb;
 			bool isLeaf = false;
+			void DrawNode() {}
 		};
 
 		using Visitor = std::function<bool(Node*)>;
