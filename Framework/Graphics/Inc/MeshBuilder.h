@@ -33,6 +33,7 @@ public:
 	static BoneMesh CreateTentacle(uint32_t numBone = 3, float radius = 1.0f, float height = 1.0f ,uint32_t horizontalCount = 32);
 
 	static Math::AABB ComputeBound(const Mesh& mesh);
+	static void ComputeNormals(Mesh& mesh);
 
 	//Todo: static MeshPC CreateTorusPC(float ringRad = 1.0f, float tubeRad = 0.2f, uint32_t ringSides = 16, uint32_t tubeSides = 16);
 };

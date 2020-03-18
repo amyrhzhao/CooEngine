@@ -15,11 +15,11 @@ void Coo::Terrain::Initialize(uint32_t numRows, uint32_t numCols, float scale)
 	mScale = scale;
 
 	mConstantBuffer.Initialize();
-	mTerrainVertexShader.Initialize(L"../Assets/Shaders/Terrain.fx", Graphics::Vertex::Format);
-	mTerrainPixelShader.Initialize(L"../Assets/Shaders/Terrain.fx");
+	mTerrainVertexShader.Initialize(L"../../Assets/Shaders/Terrain.fx", Graphics::Vertex::Format);
+	mTerrainPixelShader.Initialize(L"../../Assets/Shaders/Terrain.fx");
 
 	mSampler.Initialize(Graphics::Sampler::Filter::Anisotropic, Graphics::Sampler::AddressMode::Wrap);
-	mGrassTexture.Initialize("../Assets/Images/grass_2048.jpg");
+	mGrassTexture.Initialize("../../Assets/Images/grass_2048.jpg");
 
 	mMesh.vertices.resize(numRows * numCols);
 	mMesh.indices.resize(mNumCells * 6);
@@ -148,12 +148,10 @@ void Terrain::GenerateVertices()
 			vertex.tangent = { 1.0f, 0.0f, 0.0f };
 			vertex.texcoord.x = normX;
 			vertex.texcoord.y = normZ;
-			//vertex.u = normX;
-			//vertex.v = normZ;
 		}
 	}
 
-	//Graphics::MeshBuilder::ComputeNormals(mMesh);
+	Graphics::MeshBuilder::ComputeNormals(mMesh);
 }
 
 void Terrain::GenerateIndices()

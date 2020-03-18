@@ -920,4 +920,29 @@ Math::AABB MeshBuilder::ComputeBound(const Mesh& mesh)
 	return Math::AABB::FromMinMax(min, max);
 }
 
+void Coo::Graphics::MeshBuilder::ComputeNormals(Mesh & mesh)
+{
+	for (size_t i = 0; i < mesh.indices.size(); i += 3) 
+	{
+		size_t i0 = mesh.indices[i + 0];
+		size_t i1 = mesh.indices[i + 1];
+		size_t i2 = mesh.indices[i + 2];
+		auto& a = mesh.vertices[i0];
+		auto& b = mesh.vertices[i1];
+		auto& c = mesh.vertices[i2];
+		Math::Vector3 ab = b.position - a.position;
+		Math::Vector3 ac = c.position - a.position;
+		Math::Vector3 normal = Math::Normalize(Math::Cross(ab, ac));
+		a.normal += normal;
+		b.normal += normal;
+		c.normal += normal;
+	}
+
+	for (size_t i = 0; i < mesh.vertices.size(); ++i) 
+	{
+		auto& norm = mesh.vertices[i].normal;
+		norm = Math::Normalize(norm);
+	}
+}
+
 

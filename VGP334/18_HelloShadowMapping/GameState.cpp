@@ -58,11 +58,12 @@ void GameState::Initialize()
 	mDepthMapPixelShader.Initialize(L"../../Assets/Shaders/DepthMap.fx");
 	mDepthMapConstantBuffer.Initialize();
 	mShadowConstantBuffer.Initialize();
-
+	mTerrain.Initialize(100,100,1.0f);
 }
 
 void GameState::Terminate()
 {
+	mTerrain.Terminate();
 	mShadowConstantBuffer.Terminate();
 	mDepthMapConstantBuffer.Terminate();
 	mDepthMapPixelShader.Terminate();
@@ -124,6 +125,7 @@ void GameState::Render()
 	mDepthMapRenderTarget.EndRender();
 
 	DrawScene();
+	mTerrain.Render(mDefaultCamera);
 }
 
 void GameState::DebugUI()
@@ -187,6 +189,7 @@ void GameState::DebugUI()
 	{
 		// position + rotation + reset
 	}
+	mTerrain.DebugUI();
 	ImGui::End();
 }
 

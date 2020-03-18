@@ -19,6 +19,7 @@ private:
 	Camera mDefaultCamera;
 	Camera mLightCamera;
 	Camera* mActiveCamera = nullptr;
+	Terrain mTerrain;
 
 	Mesh mTankMesh;
 	MeshBuffer mTankMeshBuffer;
