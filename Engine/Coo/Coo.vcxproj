@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Inc\App.h" />
     <ClInclude Include="Inc\AppState.h" />
+    <ClInclude Include="Inc\CameraService.h" />
     <ClInclude Include="Inc\ColliderComponent.h" />
     <ClInclude Include="Inc\Common.h" />
     <ClInclude Include="Inc\Component.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Inc\GameObjectFactory.h" />
     <ClInclude Include="Inc\Quadtree.h" />
     <ClInclude Include="Inc\Terrain.h" />
+    <ClInclude Include="Inc\TerrainService.h" />
     <ClInclude Include="Src\MetaRegistration.h" />
     <ClInclude Include="Inc\Service.h" />
     <ClInclude Include="Inc\TransformComponent.h" />
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\App.cpp" />
+    <ClCompile Include="Src\CameraService.cpp" />
     <ClCompile Include="Src\ColliderComponent.cpp" />
     <ClCompile Include="Src\Component.cpp" />
     <ClCompile Include="Src\Coo.cpp" />
@@ -190,6 +193,7 @@
     <ClCompile Include="Src\Quadtree.cpp" />
     <ClCompile Include="Src\Service.cpp" />
     <ClCompile Include="Src\Terrain.cpp" />
+    <ClCompile Include="Src\TerrainService.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
     <ClCompile Include="Src\World.cpp" />
   </ItemGroup>

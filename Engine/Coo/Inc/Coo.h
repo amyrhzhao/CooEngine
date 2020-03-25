@@ -18,6 +18,10 @@
 #include "ColliderComponent.h"
 #include "TransformComponent.h"
 
+// Services
+#include "TerrainService.h"
+#include "CameraService.h"
+
 // Editors
 #include "Editor.h"
 

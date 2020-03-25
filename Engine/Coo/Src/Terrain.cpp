@@ -140,7 +140,6 @@ void Terrain::GenerateVertices()
 			vertex.position =
 			{
 				(float)x * mScale,
-				//heightValues[index],
 				vertex.position.y = (noise0 + noise1),
 				(float)z * mScale
 			};

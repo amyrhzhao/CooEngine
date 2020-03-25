@@ -1,6 +1,7 @@
 #include "Precompiled.h"
 #include "Editor.h"
 #include "GameObject.h"
+#include "Service.h"
 #include "World.h"
 
 using namespace Coo;
@@ -16,9 +17,14 @@ void Coo::Editor::ShowHierarchyView()
 	ImGui::Begin("World");
 	if (ImGui::TreeNode("Services")) 
 	{
-		ImGui::Selectable("Targeting", false);
-		ImGui::Selectable("Navigation", false);
-		ImGui::Selectable("Physics", false);
+		for (auto& service : mWorld.mServices)
+		{
+			if (ImGui::Selectable(service->GetMetaClass()->GetName(), service.get() == mSelectedService)) 
+			{
+				mSelectedService = service.get();
+				mSelectedGameObject = nullptr;
+			}
+		}
 		ImGui::TreePop();
 	}
 	if (ImGui::TreeNode("Cameras"))
@@ -33,6 +39,7 @@ void Coo::Editor::ShowHierarchyView()
 			if (ImGui::Selectable(gameObject->GetName(), gameObject == mSelectedGameObject)) 
 			{
 				mSelectedGameObject = gameObject;
+				mSelectedService = nullptr;
 			}
 		}
 		ImGui::TreePop();
@@ -43,7 +50,11 @@ void Coo::Editor::ShowHierarchyView()
 void Coo::Editor::ShowInspectorView()
 {
 	ImGui::Begin("Inspector");
-	if (mSelectedGameObject) 
+	if (mSelectedService) 
+	{
+		mSelectedService->DebugUI();
+	}
+	else if (mSelectedGameObject) 
 	{
 		for (auto& component : mSelectedGameObject->mComponents) 
 		{

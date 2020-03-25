@@ -77,8 +77,7 @@ static void ShowExampleMenuFile()
 void EditState::Initialize()
 {
 	GraphicsSystem::Get()->SetClearColor(Colors::Black);
-	mCamera.SetPosition({ 0.0f,0.0f,-10.0f });
-	mCamera.SetDirection({ 0.0f,0.0f,1.0f });
+
 	mMesh = MeshBuilder::CreateSphere(5.0f, 512, 512);
 	mSpaceMesh = MeshBuilder::CreateSpherePX(400.0f);
 	mScreenMesh = MeshBuilder::CreateNDCQuad();
@@ -124,8 +123,16 @@ void EditState::Initialize()
 	{
 		mRenderTargets[i].Initialize(graphicsSystem->GetBackBufferWidth(), graphicsSystem->GetBackBufferHeight(), RenderTarget::Format::RGBA_U8);
 	}
+	
+	mWorld.LoadLevel("../../Assets/Template/test_level.json");
+
+	mCamera = mWorld.GetService<CameraService>()->AddCamera("Editor");
+	mCamera->SetPosition({ 0.0f,0.0f,-10.0f });
+	mCamera->SetDirection({ 0.0f,0.0f,1.0f });
+	mWorld.GetService<CameraService>()->SetActiveCamera("Editor");
 
 	mWorld.Initialize(10000);
+	
 	mWorld.Create("../../Assets/Template/test.json", "TestObject");
 	mWorld.Create("../../Assets/Template/test.json", "TestObject1");
 }
@@ -153,16 +160,16 @@ void EditState::Update(float deltaTime)
 	auto inputSystem = InputSystem::Get();
 	if (inputSystem->IsKeyDown(KeyCode::ESCAPE)) { CooApp::ShutDown(); }
 	// Camera transation
-	if (inputSystem->IsKeyDown(KeyCode::W)) { mCamera.Walk(mMoveSpeed * deltaTime); }
-	if (inputSystem->IsKeyDown(KeyCode::S)) { mCamera.Walk(-mMoveSpeed * deltaTime); }
-	if (inputSystem->IsKeyDown(KeyCode::A)) { mCamera.Strafe(mMoveSpeed * deltaTime); }
-	if (inputSystem->IsKeyDown(KeyCode::D)) { mCamera.Strafe(-mMoveSpeed * deltaTime); }
-	if (inputSystem->IsKeyDown(KeyCode::Q)) { mCamera.Rise(mMoveSpeed * deltaTime); }
-	if (inputSystem->IsKeyDown(KeyCode::E)) { mCamera.Rise(-mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::W)) { mCamera->Walk(mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::S)) { mCamera->Walk(-mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::A)) { mCamera->Strafe(mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::D)) { mCamera->Strafe(-mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::Q)) { mCamera->Rise(mMoveSpeed * deltaTime); }
+	if (inputSystem->IsKeyDown(KeyCode::E)) { mCamera->Rise(-mMoveSpeed * deltaTime); }
 	if (inputSystem->IsMouseDown(MouseButton::RBUTTON))
 	{
-		mCamera.Yaw(inputSystem->GetMouseMoveX() * mTurnSpeed * deltaTime);
-		mCamera.Pitch(inputSystem->GetMouseMoveY() * mTurnSpeed * deltaTime);
+		mCamera->Yaw(inputSystem->GetMouseMoveX() * mTurnSpeed * deltaTime);
+		mCamera->Pitch(inputSystem->GetMouseMoveY() * mTurnSpeed * deltaTime);
 	}
 	auto gs = GraphicsSystem::Get();
 	mBlurData.resolution = { static_cast<float>(gs->GetBackBufferWidth()),static_cast<float>(gs->GetBackBufferHeight()) };
@@ -176,7 +183,7 @@ void EditState::Render()
 	mRenderTargets[iteration].BeginRender();
 	RenderScene();
 	mWorld.Render();
-	SimpleDraw::Render(mCamera);
+	SimpleDraw::Render(*mCamera);
 	mRenderTargets[iteration].EndRender();
 	iteration = (iteration + 1) % 2;
 
@@ -264,7 +271,7 @@ void EditState::ShowSceneView()
 
 	ImGui::GetForegroundDrawList()->AddRect(vMin, vMax, IM_COL32(255, 255, 0, 255));
 	ImGui::Image(mRenderTargets[iteration % 2 ? 0 : 1].GetShaderResourceView(), { x ,  y });
-	mCamera.SetAspectRatio(x / y);
+	mCamera->SetAspectRatio(x / y);
 	ImGui::CaptureMouseFromApp(!ImGui::IsItemHovered());
 	ImGui::End();
 }
@@ -331,12 +338,12 @@ void EditState::RenderScene()
 	Coo::Graphics::SamplerManager::Get()->GetSampler("LinearWrap")->BindPS();
 
 	auto world = Coo::Math::Translate(mPosition);
-	auto view = mCamera.GetViewMatrix();
-	auto proj = mCamera.GetPerspectiveMatrix();
+	auto view = mCamera->GetViewMatrix();
+	auto proj = mCamera->GetPerspectiveMatrix();
 	TransformData transformData;
 	transformData.wvp = Coo::Math::Transpose(world*view*proj);
 	transformData.world = Coo::Math::Transpose(world);
-	transformData.viewPosition = mCamera.GetPosition();
+	transformData.viewPosition = mCamera->GetPosition();
 	mTransformBuffer.Set(transformData);
 	mTransformBuffer.BindVS(0);
 	mTransformBuffer.BindPS(0);
@@ -361,9 +368,9 @@ void EditState::RenderScene()
 		mSpaceVertexShader.Bind();
 		mSpacePixelShader.Bind();
 		Matrix4 matrix[3];
-		matrix[0] = Coo::Math::Transpose(Translate(mCamera.GetPosition()));
-		matrix[1] = Coo::Math::Transpose(mCamera.GetViewMatrix());
-		matrix[2] = Coo::Math::Transpose(mCamera.GetPerspectiveMatrix());
+		matrix[0] = Coo::Math::Transpose(Translate(mCamera->GetPosition()));
+		matrix[1] = Coo::Math::Transpose(mCamera->GetViewMatrix());
+		matrix[2] = Coo::Math::Transpose(mCamera->GetPerspectiveMatrix());
 		mSpaceConstantBuffer.Set(matrix);
 		mSpaceConstantBuffer.BindVS();
 		tm->BindPS(mSpaceTexture, 0);

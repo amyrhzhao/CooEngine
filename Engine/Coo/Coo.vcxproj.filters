@@ -40,6 +40,12 @@
     <Filter Include="Src\Terrain">
       <UniqueIdentifier>{e09180b7-474a-4ebc-9101-91a646a20ea9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Services">
+      <UniqueIdentifier>{de1a21cc-c3fc-4245-884a-f3694ca52953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Services">
+      <UniqueIdentifier>{feef845a-b48b-4863-890d-94992653227d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -90,6 +96,12 @@
     <ClInclude Include="Inc\Quadtree.h">
       <Filter>Inc\Terrain</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\TerrainService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CameraService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -133,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="Src\Terrain.cpp">
       <Filter>Src\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\TerrainService.cpp">
+      <Filter>Src\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CameraService.cpp">
+      <Filter>Src\Services</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

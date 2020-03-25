@@ -21,6 +21,8 @@ namespace Coo
 			return static_cast<T*>(newService.get());
 		}
 
+		Service* AddService(const Core::Meta::MetaClass* metaClass);
+
 		template <class T>
 		T* GetService() 
 		{
@@ -39,6 +41,7 @@ namespace Coo
 		}
 
 		GameObjectHandle Create(const std::filesystem::path& templateFileName, std::string name);
+		void LoadLevel(const std::filesystem::path& fileName);
 		GameObjectHandle Find(const std::string& name);
 		
 		void Destroy(GameObjectHandle handle);

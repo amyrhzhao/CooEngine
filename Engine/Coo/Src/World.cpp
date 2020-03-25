@@ -48,6 +48,15 @@ void World::Terminate()
 	mInitialized = false;
 }
 
+Service* Coo::World::AddService(const Core::Meta::MetaClass* metaClass) 
+{
+	ASSERT(!mInitialized, "[World] Cannot add service after world has already initialized.");
+	Service* newService = static_cast<Service*>(metaClass->Create());
+	newService->mWorld = this;
+	mServices.emplace_back(std::unique_ptr<Service>(newService));
+	return newService;
+}
+
 GameObjectHandle Coo::World::Create(const std::filesystem::path&  templateFileName, std::string name)
 {
 	auto gameObject = mGameObjectFactory->Create(templateFileName.u8string().c_str());
@@ -66,6 +75,36 @@ GameObjectHandle Coo::World::Create(const std::filesystem::path&  templateFileNa
 	mUpdateList.push_back(gameObject);
 
 	return handle;
+}
+
+void Coo::World::LoadLevel(const std::filesystem::path& fileName)
+{
+	using namespace rapidjson;
+	FILE* file = nullptr;
+	fopen_s(&file, fileName.u8string().c_str(), "r");
+
+	char readBuffer[65536];
+	FileReadStream is(file, readBuffer, sizeof(readBuffer));
+
+	Document document;
+	document.ParseStream(is);
+
+	if (document.HasMember("Services") && document["Services"].IsObject()) 
+	{
+		auto services = document["Services"].GetObjectW();
+		for (auto& service : services) 
+		{
+			auto metaClass = Core::Meta::FindMetaClass(service.name.GetString());
+			auto newService = AddService(metaClass);
+			ASSERT(newService, "[World] Failed to create service %s.", service.name.GetString());
+			metaClass->Deserialize(newService, service.value);
+
+		}
+	}
+	if (document.HasMember("GameObjects") && document["GameObjects"].IsArray()) 
+	{
+
+	}
 }
 
 GameObjectHandle Coo::World::Find(const std::string& name)

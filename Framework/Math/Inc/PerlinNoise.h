@@ -7,7 +7,7 @@ namespace Coo::Math
 	{
 	public:
 		PerlinNoise();
-		PerlinNoise(size_t seed);
+		PerlinNoise(uint32_t seed);
 
 		float Get(float x, float y, float z);
 	private:

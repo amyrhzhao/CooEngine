@@ -24,7 +24,7 @@ private:
 	void RenderScene();
 	void PostProcess(int iteration, int shader);
 
-	Camera mCamera;
+	Camera* mCamera;
 	Mesh mMesh;
 	MeshBuffer mMeshBuffer;
 	MeshPX mSpaceMesh;

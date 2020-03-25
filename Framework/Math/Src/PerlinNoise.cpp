@@ -25,7 +25,7 @@ Coo::Math::PerlinNoise::PerlinNoise()
 	p.insert(p.end(), p.begin(), p.end());
 }
 
-Coo::Math::PerlinNoise::PerlinNoise(size_t seed)
+Coo::Math::PerlinNoise::PerlinNoise(uint32_t seed)
 {
 	// Generate a new permutation vector based on the value of seed
 	p.resize(256);

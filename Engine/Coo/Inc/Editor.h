@@ -5,6 +5,7 @@ namespace Coo
 {
 	class World;
 	class GameObject;
+	class Service;
 
 	class Editor 
 	{
@@ -16,6 +17,8 @@ namespace Coo
 
 	private:
 		World& mWorld;
+
+		Service* mSelectedService;
 		GameObject* mSelectedGameObject;
 	};
 }
