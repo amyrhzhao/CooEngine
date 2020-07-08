@@ -10,26 +10,28 @@ namespace
 	Core::WindowMessageHandler sWindowMessageHandler;
 }
 
-BOOL CALLBACK Input::EnumGamePadCallback(const DIDEVICEINSTANCE* DIDeviceInstance, VOID* context)
+namespace Coo::Input
 {
-	// Obtain an interface to the enumerated joystick
-	InputSystem* inputSystem = static_cast<InputSystem*>(context);
-	IDirectInput8* pDI = inputSystem->mDirectInput;
-	IDirectInputDevice8** pGamePad = &(inputSystem->mGamePadDevice);
-	if (FAILED(pDI->CreateDevice(DIDeviceInstance->guidInstance, pGamePad, nullptr))) 
+	BOOL CALLBACK EnumGamePadCallback(const DIDEVICEINSTANCE* DIDeviceInstance, VOID* context)
 	{
-		LOG("[InputSystem] Failed to create game pad device.");
+		// Obtain an interface to the enumerated joystick
+		InputSystem* inputSystem = static_cast<InputSystem*>(context);
+		IDirectInput8* pDI = inputSystem->mDirectInput;
+		IDirectInputDevice8** pGamePad = &(inputSystem->mGamePadDevice);
+		if (FAILED(pDI->CreateDevice(DIDeviceInstance->guidInstance, pGamePad, nullptr)))
+		{
+			LOG("[InputSystem] Failed to create game pad device.");
+		}
+
+		return DIENUM_STOP;
 	}
 
-	return DIENUM_STOP;
-}
-
-LRESULT CALLBACK Input::InputSystemMessageHandler(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	if (sInputSystem)
+	LRESULT CALLBACK InputSystemMessageHandler(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		switch (message)
+		if (sInputSystem)
 		{
+			switch (message)
+			{
 			case WM_ACTIVATEAPP:
 			{
 				if (wParam == TRUE)
@@ -118,10 +120,11 @@ LRESULT CALLBACK Input::InputSystemMessageHandler(HWND window, UINT message, WPA
 				}
 				break;
 			}
+			}
 		}
-	}
 
-	return sWindowMessageHandler.ForwardMessage(window, message, wParam, lParam);
+		return sWindowMessageHandler.ForwardMessage(window, message, wParam, lParam);
+	}
 }
 
 void InputSystem::StaticInitialize(HWND window)
