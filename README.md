@@ -1,7 +1,7 @@
 # CooEngine
 
 Coo Engine is a custom Game Engine developed using Direct3D 11 and C++ 17. 
-The engine support both 3D and 2D games development. 
+The engine supports both 3D and 2D games development. 
 
 ## Main Features
 ### AI
