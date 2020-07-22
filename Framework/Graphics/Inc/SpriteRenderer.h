@@ -36,7 +36,7 @@ namespace Coo::Graphics
 		void BeginRender();
 		void EndRender();
 
-		void Draw(const Texture& texture, const Math::Vector2& pos, Pivot pivot);
+		void Draw(const Texture& texture, const Math::Vector2& pos, Pivot pivot = Pivot::TopLeft);
 		void Draw(const Texture& texture, const Math::AABB& rect, const Math::Vector2& pos, float rotation, const Math::Vector2& scale, Pivot pivot);
 
 	private:

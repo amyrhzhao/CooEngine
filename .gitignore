@@ -382,3 +382,5 @@ MigrationBackup/
 *.out
 *.app
 
+# Configuration files
+*.ini

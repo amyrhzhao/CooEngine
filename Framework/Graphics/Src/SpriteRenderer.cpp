@@ -107,7 +107,7 @@ void SpriteRenderer::EndRender()
 	mSpriteBatch->End();
 }
 
-void SpriteRenderer::Draw(const Texture& texture, const Math::Vector2& pos, Pivot pivot = Pivot::TopLeft)
+void SpriteRenderer::Draw(const Texture& texture, const Math::Vector2& pos, Pivot pivot)
 {
 	ASSERT(mSpriteBatch != nullptr, "[SpriteRenderer] Not initialized!");
 	mSpriteBatch->Draw(GetShaderResourceView(texture), DirectX::XMFLOAT2{ pos.x,pos.y });
@@ -117,10 +117,10 @@ void SpriteRenderer::Draw(const Texture& texture, const Math::AABB& rec, const M
 {
 	ASSERT(mSpriteBatch != nullptr, "[SpriteRenderer] Not initialized!");
 	RECT rect;
-	rect.left = rec.center.x - rec.extend.x;
-	rect.top = rec.center.y - rec.extend.y;
-	rect.right = rec.center.x + rec.extend.x;
-	rect.bottom = rec.center.y + rec.extend.y;
-	auto origin = GetOrigin(rec.extend.x, rec.extend.y, pivot);
+	rect.left = static_cast<LONG>(rec.center.x - rec.extend.x);
+	rect.top = static_cast<LONG>(rec.center.y - rec.extend.y);
+	rect.right = static_cast<LONG>(rec.center.x + rec.extend.x);
+	rect.bottom = static_cast<LONG>(rec.center.y + rec.extend.y);
+	auto origin = GetOrigin(static_cast<uint32_t>(rec.extend.x), static_cast<uint32_t>(rec.extend.y), pivot);
 	mSpriteBatch->Draw(GetShaderResourceView(texture), Convert(pos), &rect, DirectX::Colors::White, rotation, origin, Convert(scale));
 }
