@@ -1,7 +1,6 @@
 #include "Precompiled.h"
 #include "SimpleDraw.h"
 
-#include <codecvt>
 #include "ConstantBuffer.h"
 #include "GraphicsSystem.h"
 #include "PixelShader.h"

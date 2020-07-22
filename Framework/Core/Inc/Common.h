@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <codecvt>
 #include <cstdio>
 #include <cstdint>
 #include <cstdlib>

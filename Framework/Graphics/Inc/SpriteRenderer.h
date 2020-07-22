@@ -5,30 +5,44 @@ namespace DirectX { class SpriteBatch; class CommonStates; }
 
 namespace Coo::Graphics
 {
-class Texture;
+	class Texture;
 
-class SpriteRenderer 
-{
-public:
-	static void StaticInitialize();
-	static void StaticTerminate();
-	static SpriteRenderer* Get();
+	enum class Pivot
+	{
+		TopLeft,
+		Top,
+		TopRight,
+		Left,
+		Center,
+		Right,
+		BottomLeft,
+		Bottom,
+		BottomRight
+	};
 
-	SpriteRenderer() = default;
-	~SpriteRenderer();
+	class SpriteRenderer
+	{
+	public:
+		static void StaticInitialize();
+		static void StaticTerminate();
+		static SpriteRenderer* Get();
 
-	void Initialize();
-	void Terminate();
+		SpriteRenderer() = default;
+		~SpriteRenderer();
 
-	void BeginRender();
-	void EndRender();
+		void Initialize();
+		void Terminate();
 
-	void Draw(const Texture& texture, const Math::Vector2& pos);
+		void BeginRender();
+		void EndRender();
 
-private:
-	std::unique_ptr<DirectX::SpriteBatch> mSpriteBatch = nullptr;
-	std::unique_ptr<DirectX::CommonStates> mCommonStates = nullptr;
-};
+		void Draw(const Texture& texture, const Math::Vector2& pos, Pivot pivot);
+		void Draw(const Texture& texture, const Math::AABB& rect, const Math::Vector2& pos, float rotation, const Math::Vector2& scale, Pivot pivot);
+
+	private:
+		std::unique_ptr<DirectX::SpriteBatch> mSpriteBatch = nullptr;
+		std::unique_ptr<DirectX::CommonStates> mCommonStates = nullptr;
+	};
 } // namespace Coo::Graphics
 
 #endif // !INCLUDED_COOENGINE_GRAPHICS_SPRITERENDERER_H
