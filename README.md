@@ -15,23 +15,29 @@ The engine supports both 3D and 2D games development.
   
 ### Core
 - Memory Management:
-  - BlockAllocator that allocates fixed-size memory blocks on compile-time and manages them on run time.
-  - Handle Pool that manages accessibility and check the validation of Handles.
+  - BlockAllocator that allocates, access and free fixed-size memory blocks to avoid memory fragmentation.
+  - Handle Pool that manages accessibility and checks the validation of Handles.
 - StreamReader and StreamWriter that read and write data into MemoryStream. 
-- Meta system that save information of source code which can be use on run time. General Meta type including:
+- Meta system that saves information of source code which can be used on run time. General Meta type including:
   - Meta Array
   - Meta Class
   - Meta Field
   - Meta Pointer
   
 ### Graphics
-- Animation
-- Camera
-- DebugUI
-- Material
-- Mesh
-- Simple Draw
-- Sprite Renderer
+- Animation:
+  - Animator that plays, pauses animation and manages the transition between animation clips.
+  - Skeleton/Skinning animation support.
+  - Tool for animation file import and convert to a custom animation file.
+- DebugUI that provides an interface between CooEngine and Dear Imgui.
+- Mesh:
+  - Basic geometry builder includes Cube, Cone, Cylinder, Plane and Sphere.
+  - Mesh data save and load.
+  - MeshBuffer for shader use.
+- Simple Draw that is used for visual debugging.
+- Sprite Renderer:
+  - Batches sprites for efficiency.
+  - Draw sprite with different textures, positions, rotations, scales and pivots.
 
 ### Math
 - Math types:
