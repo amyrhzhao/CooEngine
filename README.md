@@ -24,6 +24,11 @@ The engine supports both 3D and 2D games development.
   - Meta Field
   - Meta Pointer
   
+### Editor
+- Component-based game object system that can:
+  - Add Game Objects and Service in World
+  - Load JSON template for object creation
+
 ### Graphics
 - Animation:
   - Animator that plays, pauses animation and manages the transition between animation clips.
@@ -46,6 +51,16 @@ The engine supports both 3D and 2D games development.
   - *Quaternion*
   - 2D: *Circle, LineSegment*
   - 3D: *AABB, Ray*
+  - *PerlinNoise*
+- Some useful constants and helper fucntions.
+- Random number generation using std::random_device.
+
+### Physics
+- PhysicsWorld that contains and manages all the Particles and Constraints
+- Particles that updates using Verlet integration
+- Constraints that affects particles including:
+  - Fixed Constraints
+  - Spring Constraints
 
 ## External Source Used
 - [Assimp](https://github.com/assimp/assimp)
