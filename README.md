@@ -55,6 +55,10 @@ The engine supports both 3D and 2D games development.
 - Some useful constants and helper fucntions.
 - Random number generation using std::random_device.
 
+### Network
+- LinkingContext that refer objects instance across a network
+- TCP socket and UDP socket
+
 ### Physics
 - PhysicsWorld that contains and manages all the Particles and Constraints
 - Particles that updates using Verlet integration
