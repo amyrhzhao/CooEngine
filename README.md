@@ -34,7 +34,7 @@ The engine supports both 3D and 2D games development.
   - Animator that plays, pauses animation and manages the transition between animation clips.
   - Skeleton/Skinning animation support.
   - Tool for animation file import and convert to a custom animation file.
-- DebugUI that provides an interface between CooEngine and Dear Imgui.
+- DebugUI that provides an interface between CooEngine and Dear ImGui.
 - Mesh:
   - Basic geometry builder includes Cube, Cone, Cylinder, Plane and Sphere.
   - Mesh data save and load.
@@ -52,7 +52,7 @@ The engine supports both 3D and 2D games development.
   - 2D: *Circle, LineSegment*
   - 3D: *AABB, Ray*
   - *PerlinNoise*
-- Some useful constants and helper fucntions.
+- Some useful constants and helper functions.
 - Random number generation using std::random_device.
 
 ### Network
