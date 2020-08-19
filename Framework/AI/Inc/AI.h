@@ -31,4 +31,7 @@
 #include "GoalComposite.h"
 #include "Strategy.h"
 
+// Neural Network
+#include "NeuralNetwork.h"
+
 #endif // !INCLUDED_COOENGINE_AI_H

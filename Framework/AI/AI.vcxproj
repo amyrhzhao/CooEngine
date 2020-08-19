@@ -157,6 +157,7 @@
     <ClInclude Include="Inc\Graph.h" />
     <ClInclude Include="Inc\GraphSearch.h" />
     <ClInclude Include="Inc\MemoryRecord.h" />
+    <ClInclude Include="Inc\NeuralNetwork.h" />
     <ClInclude Include="Inc\State.h" />
     <ClInclude Include="Inc\StateMachine.h" />
     <ClInclude Include="Inc\SteeringBehavior.h" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Entity.cpp" />
+    <ClCompile Include="Src\NeuralNetwork.cpp" />
     <ClCompile Include="Src\PerceptionModule.cpp" />
     <ClCompile Include="Src\Agent.cpp" />
     <ClCompile Include="Src\AIWorld.cpp" />

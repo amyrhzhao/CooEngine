@@ -61,6 +61,9 @@
     <ClInclude Include="Inc\Strategy.h">
       <Filter>Inc\Goal</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\NeuralNetwork.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Src">
@@ -111,6 +114,9 @@
       <Filter>Src\Perception</Filter>
     </ClCompile>
     <ClCompile Include="Src\Entity.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NeuralNetwork.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

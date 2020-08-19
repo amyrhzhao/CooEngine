@@ -188,3 +188,8 @@ int Coo::Math::Random(int min, int max)
 {
 	return std::uniform_int_distribution<>{min, max}(mRandomEngine);
 }
+
+double Coo::Math::RandomReal()
+{
+	return std::uniform_real_distribution<>{0, 1}(mRandomEngine);
+}
