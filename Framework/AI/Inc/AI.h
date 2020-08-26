@@ -32,6 +32,7 @@
 #include "Strategy.h"
 
 // Neural Network
+#include "GeneticAlgorithm.h"
 #include "NeuralNetwork.h"
 
 #endif // !INCLUDED_COOENGINE_AI_H

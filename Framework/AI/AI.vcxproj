@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -152,6 +152,7 @@
     <ClInclude Include="Inc\AI.h" />
     <ClInclude Include="Inc\AIWorld.h" />
     <ClInclude Include="Inc\Common.h" />
+    <ClInclude Include="Inc\GeneticAlgorithm.h" />
     <ClInclude Include="Inc\Goal.h" />
     <ClInclude Include="Inc\GoalComposite.h" />
     <ClInclude Include="Inc\Graph.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Entity.cpp" />
+    <ClCompile Include="Src\GeneticAlgorithm.cpp" />
     <ClCompile Include="Src\NeuralNetwork.cpp" />
     <ClCompile Include="Src\PerceptionModule.cpp" />
     <ClCompile Include="Src\Agent.cpp" />

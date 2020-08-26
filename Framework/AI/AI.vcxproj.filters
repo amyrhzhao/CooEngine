@@ -64,6 +64,9 @@
     <ClInclude Include="Inc\NeuralNetwork.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\GeneticAlgorithm.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Src">
@@ -117,6 +120,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\NeuralNetwork.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GeneticAlgorithm.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
