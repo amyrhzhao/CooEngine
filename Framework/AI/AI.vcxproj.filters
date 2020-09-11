@@ -61,11 +61,29 @@
     <ClInclude Include="Inc\Strategy.h">
       <Filter>Inc\Goal</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\NeuralNetwork.h">
-      <Filter>Inc</Filter>
+    <ClInclude Include="Inc\Genome.h">
+      <Filter>Inc\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\NeatConfig.h">
+      <Filter>Inc\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Population.h">
+      <Filter>Inc\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\NeuralNet.h">
+      <Filter>Inc\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\InnovationContainer.h">
+      <Filter>Inc\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Species.h">
+      <Filter>Inc\NEAT</Filter>
     </ClInclude>
     <ClInclude Include="Inc\GeneticAlgorithm.h">
-      <Filter>Inc</Filter>
+      <Filter>Inc\NeuralNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\NeuralNetwork.h">
+      <Filter>Inc\NeuralNetwork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +114,18 @@
     <Filter Include="Inc\Goal">
       <UniqueIdentifier>{8376ea49-6c1a-4528-aa55-bbef4bfdee0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\NEAT">
+      <UniqueIdentifier>{26431085-139a-4da7-af58-e9c7469f3bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\NEAT">
+      <UniqueIdentifier>{b81c1e0f-4dcf-436f-ae73-08e102ed9866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\NeuralNetwork">
+      <UniqueIdentifier>{00bba8e6-6230-4c11-89ea-45edab12c15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\NeuralNetwork">
+      <UniqueIdentifier>{4500e906-0f60-4f8d-a1fe-3a231b74d1e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -119,11 +149,20 @@
     <ClCompile Include="Src\Entity.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\NeuralNetwork.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="Src\Population.cpp">
+      <Filter>Src\NEAT</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NeuralNet.cpp">
+      <Filter>Src\NEAT</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\InnovationContainer.cpp">
+      <Filter>Src\NEAT</Filter>
     </ClCompile>
     <ClCompile Include="Src\GeneticAlgorithm.cpp">
-      <Filter>Src</Filter>
+      <Filter>Src\NeuralNetwork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\NeuralNetwork.cpp">
+      <Filter>Src\NeuralNetwork</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -131,45 +131,45 @@ void GameState::Render()
 
 void GameState::DebugUI()
 {
-	ImGui::Begin("Scene Setting", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	//ImGui::Begin("Scene Setting", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-	if (ImGui::CollapsingHeader("Light"))
-	{
-		bool directionChanged = false;
-		directionChanged |= ImGui::DragFloat("Direction X##Light", &mLight.direction.x, 0.1f, -1.0f, 1.0f);
-		directionChanged |= ImGui::DragFloat("Direction Y##Light", &mLight.direction.y, 0.1f, -1.0f, 1.0f);
-		directionChanged |= ImGui::DragFloat("Direction Z##Light", &mLight.direction.z, 0.1f, -1.0f, 1.0f);
-		if (directionChanged)
-		{
-			mLight.direction = Coo::Math::Normalize(mLight.direction);
-		}
-		ImGui::ColorEdit4("Ambient##Light", &mLight.ambient.r);
-		ImGui::ColorEdit4("Diffuse##Light", &mLight.diffuse.r);
-		ImGui::ColorEdit4("Specular##Light", &mLight.specular.r);
-	}
-	if (ImGui::CollapsingHeader("Material"))
-	{
-		ImGui::ColorEdit4("Ambient##Material", &mMaterial.ambient.r);
-		ImGui::ColorEdit4("Diffuse##Material", &mMaterial.diffuse.r);
-		ImGui::ColorEdit4("Specular##Material", &mMaterial.specular.r);
-		ImGui::DragFloat("Power##Material", &mMaterial.power, 0.1f, 0.0f, 100.0f);
-	}
-	if (ImGui::CollapsingHeader("Options"))
-	{
-		ImGui::DragFloat("Weight##Displacement", &mOptions.displacementWeight, 0.001f, 0.0f, 1.0f);
-		bool useNormal = (mOptions.useNormal > 0.0f);
-		if (ImGui::Checkbox("UseNormal##Options", &useNormal))
-		{
-			mOptions.useNormal = (useNormal ? 1.0f : 0.0f);
-		}
-	}
+	//if (ImGui::CollapsingHeader("Light"))
+	//{
+	//	bool directionChanged = false;
+	//	directionChanged |= ImGui::DragFloat("Direction X##Light", &mLight.direction.x, 0.1f, -1.0f, 1.0f);
+	//	directionChanged |= ImGui::DragFloat("Direction Y##Light", &mLight.direction.y, 0.1f, -1.0f, 1.0f);
+	//	directionChanged |= ImGui::DragFloat("Direction Z##Light", &mLight.direction.z, 0.1f, -1.0f, 1.0f);
+	//	if (directionChanged)
+	//	{
+	//		mLight.direction = Coo::Math::Normalize(mLight.direction);
+	//	}
+	//	ImGui::ColorEdit4("Ambient##Light", &mLight.ambient.r);
+	//	ImGui::ColorEdit4("Diffuse##Light", &mLight.diffuse.r);
+	//	ImGui::ColorEdit4("Specular##Light", &mLight.specular.r);
+	//}
+	//if (ImGui::CollapsingHeader("Material"))
+	//{
+	//	ImGui::ColorEdit4("Ambient##Material", &mMaterial.ambient.r);
+	//	ImGui::ColorEdit4("Diffuse##Material", &mMaterial.diffuse.r);
+	//	ImGui::ColorEdit4("Specular##Material", &mMaterial.specular.r);
+	//	ImGui::DragFloat("Power##Material", &mMaterial.power, 0.1f, 0.0f, 100.0f);
+	//}
+	//if (ImGui::CollapsingHeader("Options"))
+	//{
+	//	ImGui::DragFloat("Weight##Displacement", &mOptions.displacementWeight, 0.001f, 0.0f, 1.0f);
+	//	bool useNormal = (mOptions.useNormal > 0.0f);
+	//	if (ImGui::Checkbox("UseNormal##Options", &useNormal))
+	//	{
+	//		mOptions.useNormal = (useNormal ? 1.0f : 0.0f);
+	//	}
+	//}
 
-	ImGui::End();
+	//ImGui::End();
 
 	// Animator
 	animator.DebugUI();
 	
 	// Skeleton
-	skeleton.DebugUI();
+	//skeleton.DebugUI();
 }
 

@@ -24,6 +24,7 @@
 #include <mutex>
 #include <optional>
 #include <random>
+#include <stack>
 #include <string>
 #include <thread>
 #include <unordered_map>

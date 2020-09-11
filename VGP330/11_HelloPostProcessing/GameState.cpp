@@ -4,7 +4,11 @@ using namespace Coo::Input;
 using namespace Coo::Math;
 using namespace Coo::Graphics;
 
-int iteration;
+namespace 
+{
+	int iteration;
+	float rot;
+}
 
 void GameState::Initialize()
 {
@@ -115,6 +119,7 @@ void GameState::Update(float deltaTime)
 		mCamera.Yaw(inputSystem->GetMouseMoveX() * mTurnSpeed * deltaTime);
 		mCamera.Pitch(inputSystem->GetMouseMoveY() * mTurnSpeed * deltaTime);
 	}
+	rot += 0.15f * deltaTime;
 	auto gs = GraphicsSystem::Get();
 	mBlurData.resolution = { static_cast<float>(gs->GetBackBufferWidth()),static_cast<float>( gs->GetBackBufferHeight()) };
 }
@@ -229,7 +234,7 @@ void GameState::RenderScene()
 	tm->BindPS(mNormalMap, 3);
 	Coo::Graphics::SamplerManager::Get()->GetSampler("LinearWrap")->BindPS();
 
-	auto world = Coo::Math::Translate(mPosition);
+	auto world = Coo::Math::Translate(mPosition) * Coo::Math::RotationY(rot);
 	auto view = mCamera.GetViewMatrix();
 	auto proj = mCamera.GetPerspectiveMatrix();
 	TransformData transformData;

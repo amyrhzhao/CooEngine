@@ -35,4 +35,12 @@
 #include "GeneticAlgorithm.h"
 #include "NeuralNetwork.h"
 
+// NEAT
+#include "Genome.h"
+#include "InnovationContainer.h"
+#include "NeatConfig.h"
+#include "NeuralNet.h"
+#include "Population.h"
+#include "Species.h"
+
 #endif // !INCLUDED_COOENGINE_AI_H

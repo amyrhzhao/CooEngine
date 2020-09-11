@@ -153,12 +153,18 @@
     <ClInclude Include="Inc\AIWorld.h" />
     <ClInclude Include="Inc\Common.h" />
     <ClInclude Include="Inc\GeneticAlgorithm.h" />
+    <ClInclude Include="Inc\Genome.h" />
     <ClInclude Include="Inc\Goal.h" />
     <ClInclude Include="Inc\GoalComposite.h" />
     <ClInclude Include="Inc\Graph.h" />
     <ClInclude Include="Inc\GraphSearch.h" />
+    <ClInclude Include="Inc\InnovationContainer.h" />
     <ClInclude Include="Inc\MemoryRecord.h" />
+    <ClInclude Include="Inc\NeatConfig.h" />
+    <ClInclude Include="Inc\NeuralNet.h" />
     <ClInclude Include="Inc\NeuralNetwork.h" />
+    <ClInclude Include="Inc\Population.h" />
+    <ClInclude Include="Inc\Species.h" />
     <ClInclude Include="Inc\State.h" />
     <ClInclude Include="Inc\StateMachine.h" />
     <ClInclude Include="Inc\SteeringBehavior.h" />
@@ -172,10 +178,13 @@
   <ItemGroup>
     <ClCompile Include="Src\Entity.cpp" />
     <ClCompile Include="Src\GeneticAlgorithm.cpp" />
+    <ClCompile Include="Src\InnovationContainer.cpp" />
+    <ClCompile Include="Src\NeuralNet.cpp" />
     <ClCompile Include="Src\NeuralNetwork.cpp" />
     <ClCompile Include="Src\PerceptionModule.cpp" />
     <ClCompile Include="Src\Agent.cpp" />
     <ClCompile Include="Src\AIWorld.cpp" />
+    <ClCompile Include="Src\Population.cpp" />
     <ClCompile Include="Src\SteeringBehaviorType.cpp" />
     <ClCompile Include="Src\SteeringModule.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
