@@ -22,18 +22,18 @@ void Coo::AI::NEAT::NeuralNet::Initialize(const Genome& genome, const NeuralNetC
 	// Add all node types
 	for (size_t i = 0; i < netConfig.input_size; ++i)
 	{
-		mInputNodes.push_back(mNodes.size() - 1);
 		mNodes.emplace_back().type = Neuron::Type::Input;
+		mInputNodes.push_back(mNodes.size() - 1);
 	}
 	for (size_t i = 0; i < netConfig.bias_size; ++i)
 	{
-		mBiasNodes.push_back(mNodes.size() - 1);
 		mNodes.emplace_back().type = Neuron::Type::Bias;
+		mBiasNodes.push_back(mNodes.size() - 1);
 	}
 	for (size_t i = 0; i < netConfig.output_size; ++i)
 	{
-		mOutputNodes.push_back(mNodes.size() - 1);
 		mNodes.emplace_back().type = Neuron::Type::Output;
+		mOutputNodes.push_back(mNodes.size() - 1);
 	}
 
 	std::map<size_t, size_t> nodeIndexLookup;
@@ -43,8 +43,7 @@ void Coo::AI::NEAT::NeuralNet::Initialize(const Genome& genome, const NeuralNetC
 	// Go through all the connections and add any hidden nodes
 	for (auto& [innov, gene] : genome.genes)
 	{
-		//if (!gene.enabled)
-		if (gene.enabled) //???
+		if (!gene.enabled)
 			continue;
 
 		if (nodeIndexLookup.find(gene.fromNode) == nodeIndexLookup.end())

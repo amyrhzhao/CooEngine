@@ -191,5 +191,10 @@ int Coo::Math::Random(int min, int max)
 
 double Coo::Math::RandomReal()
 {
-	return std::uniform_real_distribution<>{0, 1}(mRandomEngine);
+	return std::uniform_real_distribution<double>{0.0, 1.0}(mRandomEngine);
+}
+
+double Coo::Math::RandomReal(double min, double max)
+{
+	return std::uniform_real_distribution<double>{min, max}(mRandomEngine);
 }

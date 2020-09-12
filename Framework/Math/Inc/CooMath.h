@@ -494,6 +494,7 @@ namespace Coo::Math {
 	int Random(int min, int max);
 	float RandomFloat(float min, float max);
 	double RandomReal();
+	double RandomReal(double min, double max);
 
 } // namespace Coo::Math
 

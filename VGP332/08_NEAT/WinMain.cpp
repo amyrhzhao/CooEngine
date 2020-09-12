@@ -1,6 +1,7 @@
 #include "Bird.h"
 #include "Pipe.h"
 #include <Coo/Inc/Coo.h>
+#include <vector>
 
 std::vector<Bird> birds;
 std::vector<Pipe> pipes;
@@ -12,7 +13,7 @@ void Title(float deltaTime);
 void Play(float deltaTime);
 std::function<void(float)> Tick = Title;
 
-class Game : public Coo::AppState 
+class Game : public Coo::AppState
 {
 public:
 	void Initialize() override;
@@ -67,7 +68,7 @@ void Play(float deltaTime)
 		bird.Update(deltaTime);
 
 	auto inputSys = Coo::Input::InputSystem::Get();
-	if (inputSys->IsKeyPressed(Coo::Input::KeyCode::SPACE)) 
+	if (inputSys->IsKeyPressed(Coo::Input::KeyCode::SPACE))
 	{
 		birds[0].Flap();
 	}
@@ -78,10 +79,83 @@ void Play(float deltaTime)
 		bird.Render();
 }
 
+size_t XORTest(Coo::AI::NEAT::NeuralNet& n, bool log)
+{
+	using namespace Coo::AI::NEAT;
+	size_t fitness = 0;
+
+	std::string message;
+	if (log)
+		message = "	> begin xor test\n		>";
+
+	auto output = n.Evaluate({ 0.0, 0.0 });
+	if (log)
+		message += std::to_string(output[0]) + " ";
+	fitness += static_cast<int>(std::min(1.0 / ((0.0 - output[0]) * (0.0f - output[0])), 50.0));
+
+	output = n.Evaluate({ 0.0, 1.0 });
+	if (log)
+		message += std::to_string(output[0]) + " ";
+	fitness += static_cast<int>(std::min(1.0 / ((1.0 - output[0]) * (1.0f - output[0])), 50.0));
+
+	output = n.Evaluate({ 1.0, 0.0 });
+	if (log)
+		message += std::to_string(output[0]) + " ";
+	fitness += static_cast<int>(std::min(1.0 / ((1.0 - output[0]) * (1.0f - output[0])), 50.0));
+
+	output = n.Evaluate({ 1.0, 1.0 });
+	if (log)
+		message += std::to_string(output[0]) + " ";
+	fitness += static_cast<int>(std::min(1.0 / ((0.0 - output[0]) * (0.0f - output[0])), 50.0));
+
+	if (log)
+	{
+		message += ") fitness" + std::to_string(fitness);
+		
+		//LOG(message.c_str());
+	}
+
+	return fitness;
+}
+
+void Test()
+{
+	using namespace Coo::AI::NEAT;
+	Population p(2, 1, 0);
+	NeuralNet bestGuy;
+
+	size_t max_fitness = 0;
+	while (max_fitness < 150) {
+		size_t current_fitness = 0;
+		size_t min_fitness = 100000;
+		for (auto& s : p.species)
+		{
+			for (auto& g : s.genomes)
+			{
+				NeuralNet n;
+				n.Initialize(g, p.neuralNetConfig);
+				current_fitness = XORTest(n, true);
+				if (current_fitness < min_fitness)
+					min_fitness = current_fitness;
+				if (current_fitness > max_fitness)
+				{
+					max_fitness = current_fitness;
+					bestGuy = n;
+				}
+				g.fitness = current_fitness;
+			}
+		}
+		LOG("Generation %d successfully tested. Global min: %d, Global max: %d", p.Generation(), min_fitness, max_fitness);
+		p.NewGeneration();
+	}
+
+}
+
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	CooApp::AddState<Game>("GameState");
-	CooApp::Run({ "Hello Path Finding","../../Assets/" ,500,720 });
+	Test();
+	//CooApp::AddState<Game>("GameState");
+	//CooApp::Run({ "Hello Path Finding","../../Assets/" ,500,720 });
 }
 
 void Game::Initialize()

@@ -12,13 +12,22 @@ namespace Coo::AI::NEAT
 	class Population 
 	{
 	public:
+		Population(size_t input, size_t output, size_t bias = 1);
+
+		void NewGeneration();
+		Genome MakeFirstGenome();
+
+		size_t Generation() const { return mGenerationNumber; }
+
 		MutationConfig mutationConfig;
 		SpeciatingConfig speciatingConfig;
 		NeuralNetConfig neuralNetConfig;
 
+		std::list<Species> species;
+
 	private:
 		// Evolutionary methods
-		Genome Crossover(const Genome& g1, const Genome* g2);
+		Genome Crossover(const Genome& g1, const Genome& g2);
 		void MutateWeight(Genome& g);
 		void MutateEnableDisable(Genome& g, bool enable);
 		void MutateLink(Genome& g, bool force_bias);
@@ -32,16 +41,16 @@ namespace Coo::AI::NEAT
 		// Species ranking
 		void RankGlobally();
 		void CalculateAverageFitness(Species& s);
-		size_t TotalAverageFitness();
+		size_t TotalAverageFitness() const;
 
 		// Evolution
 		void CullSpecies(bool cut_to_one);
-		Genome BreedChild(Species& s);
+		Genome BreedChild(const Species& s);
 		void RemoveStaleSpecies();
 		void RemoveWeakSpecies();
 		void AddToSpecies(Genome& child);
 
 		InnovationContainer mInnovation;
-		size_t mGenerationNumber;
+		size_t mGenerationNumber = 1;
 	};
 }
