@@ -8,9 +8,9 @@ void Pipe::Update(float deltaTime)
 void Pipe::Render()
 {
 	auto topRect = GetTopRect();
-	Coo::Graphics::SimpleDraw::AddScreenRect(topRect.r, topRect.b, topRect.g, topRect.a, Coo::Graphics::Colors::Green);
+	Coo::Graphics::SimpleDraw::AddScreenRect(topRect.left, topRect.right, topRect.top, topRect.bottom, Coo::Graphics::Colors::Green);
 	auto bottomRect = GetBottomRect();
-	Coo::Graphics::SimpleDraw::AddScreenRect(bottomRect.r, bottomRect.b, bottomRect.g, bottomRect.a, Coo::Graphics::Colors::Green);
+	Coo::Graphics::SimpleDraw::AddScreenRect(bottomRect.left, bottomRect.right, bottomRect.top, bottomRect.bottom, Coo::Graphics::Colors::Green);
 }
 
 void Pipe::Spawn(float gapSize)
@@ -21,22 +21,22 @@ void Pipe::Spawn(float gapSize)
 	mPosition.y = Coo::Math::RandomFloat(gapSize, 720 - gapSize);
 }
 
-Coo::Math::Vector4 Pipe::GetTopRect() const
+Coo::Math::Rect Pipe::GetTopRect() const
 {
 	return {
 		mPosition.x,
-		mPosition.y - mGapSize - 720, // Height
+		-FLT_MAX,
 		mPosition.x + mGapSize,
 		mPosition.y - mGapSize,
 	};
 }
 
-Coo::Math::Vector4 Pipe::GetBottomRect() const
+Coo::Math::Rect Pipe::GetBottomRect() const
 {
 	return {
 		mPosition.x,
 		mPosition.y + mGapSize,
 		mPosition.x + mGapSize,
-		mPosition.y + mGapSize + 500, // Width
+		FLT_MAX
 	};
 }

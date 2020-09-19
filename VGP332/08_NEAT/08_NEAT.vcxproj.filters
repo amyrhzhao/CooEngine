@@ -4,9 +4,11 @@
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="PipeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Pipe.h" />
+    <ClInclude Include="PipeManager.h" />
   </ItemGroup>
 </Project>

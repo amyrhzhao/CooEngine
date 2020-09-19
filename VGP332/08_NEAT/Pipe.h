@@ -10,8 +10,8 @@ public:
 
 	void Spawn(float gapSize);
 
-	Coo::Math::Vector4 GetTopRect() const;
-	Coo::Math::Vector4 GetBottomRect() const;
+	Coo::Math::Rect GetTopRect() const;
+	Coo::Math::Rect GetBottomRect() const;
 
 private:
 	Coo::Math::Vector2 mPosition;

@@ -7,6 +7,7 @@
 #include "AABB.h"
 #include "Circle.h"
 #include "LineSegment.h"
+#include "Rect.h"
 #include "Matrix3.h"
 #include "Matrix4.h"
 #include "PerlinNoise.h"
@@ -49,6 +50,11 @@ namespace Coo::Math {
 	constexpr T Lerp(T t1, T t2, float t)
 	{
 		return t1 + ((t2 - t1) * t);
+	}
+	template <typename T> 
+	inline T Clamp(T value, T _min, T _max)
+	{
+		return max(_min, min(_max, value)); 
 	}
 	inline bool Compare(float a, float b, float epsilon = FLT_MIN) { return abs(a - b) <= epsilon; }
 	inline bool IsZero(float value) { return Compare(value, 0.0f); }
@@ -488,6 +494,7 @@ namespace Coo::Math {
 	bool Intersect(const Ray& ray, const AABB& aabb, float& distEntry, float& distExit);
 	bool Intersect(const Ray& ray, const Vector3& a, const Vector3& b, const Vector3& c, float& distance);
 	bool Intersect(const Vector3& point, const AABB& aabb);
+	bool Intersect(const Rect& r, const Circle& c);
 
 	// Random
 	int Random();

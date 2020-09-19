@@ -72,6 +72,9 @@
     <ClInclude Include="Inc\PerlinNoise.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Rect.h">
+      <Filter>Inc\Geometry2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CooMath.cpp">

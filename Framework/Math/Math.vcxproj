@@ -29,6 +29,7 @@
     <ClInclude Include="Inc\PerlinNoise.h" />
     <ClInclude Include="Inc\Quaternion.h" />
     <ClInclude Include="Inc\Ray.h" />
+    <ClInclude Include="Inc\Rect.h" />
     <ClInclude Include="Inc\Vector2.h" />
     <ClInclude Include="Inc\Vector3.h" />
     <ClInclude Include="Inc\Vector4.h" />

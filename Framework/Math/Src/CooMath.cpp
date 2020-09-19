@@ -174,6 +174,20 @@ bool Coo::Math::Intersect(const Vector3 & point, const AABB & aabb)
 	return true;
 }
 
+bool Coo::Math::Intersect(const Rect& r, const Circle& c)
+{
+	Vector2 closestPoint;
+	closestPoint.x = Clamp(c.center.x, r.left, r.right);
+	closestPoint.y = Clamp(c.center.y, r.top, r.bottom);
+
+	const float distance = Distance(closestPoint, c.center);
+	if (distance > c.radius)
+	{
+		return false;
+	}
+	return true;
+}
+
 float Coo::Math::RandomFloat(float min, float max)
 {
 	return std::uniform_real_distribution<float>{min, max}(mRandomEngine);
